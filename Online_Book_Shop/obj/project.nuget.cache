@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rofsxgkhRvLVh+aHq1IYYFhQdh0dSjAqA+qQLjRkimPz/CnkrOtRd/emOcKXAQLJlpSLWySzPaMpugjNAjKqbw==",
+  "dgSpecHash": "WJHMf6zC+ezq3ZvL+j89ZTOGjLQtqSs98zeclLIpBa6HumMEwenOf1pMcAH7Cwn9Fmptat3oz3K4mOIQgFCxrA==",
   "success": true,
   "projectFilePath": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\Online_Book_Shop.csproj",
   "expectedPackageFiles": [
@@ -41,6 +41,7 @@
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\servicestack.interfaces\\6.11.0\\servicestack.interfaces.6.11.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.1\\system.configuration.configurationmanager.6.0.1.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

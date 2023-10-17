@@ -59,6 +59,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.12, )"
+            },
+            "ServiceStack.Interfaces": {
+              "target": "Package",
+              "version": "[6.11.0, )"
             }
           },
           "imports": [
