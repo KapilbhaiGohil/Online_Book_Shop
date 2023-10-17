@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/StyleSheet.css",
+    "inputFile": "Sass Filles/StyleSheet.scss"
+  },
+  {
+    "outputFile": "Sass Filles/new.css",
+    "inputFile": "Sass Filles/new.scss"
+  }
+]
