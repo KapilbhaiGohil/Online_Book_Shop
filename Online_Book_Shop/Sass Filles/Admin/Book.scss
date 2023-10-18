@@ -1,0 +1,39 @@
+﻿@import "../Shared/Colors.scss";
+#role-btn {
+    padding-top: 0;
+    width: 45%;
+
+    > div {
+        width: 100%;
+    }
+}
+textarea {
+    resize: none;
+    width: 100%;
+    height: 20vh;
+    outline: none;
+    border: none;
+    background:$bodyBack2;
+    border-radius:0.4rem;
+    padding:0.4rem;
+}
+#first-last {
+    width: 100%;
+    align-items:stretch;
+}
+#select-divs {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    > div {
+        width: 45%;
+        height: 2rem;
+    }
+}
+#first-last{
+    >div{
+        >div{
+            width:45%;
+        }
+    }
+}

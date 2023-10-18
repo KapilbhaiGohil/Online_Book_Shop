@@ -12,6 +12,12 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\Images\icons8-catalog-90.png" />
+    <None Include="wwwroot\Images\icons8-date-96.png" />
+    <None Include="wwwroot\Images\icons8-earth-52.png" />
+    <None Include="wwwroot\Images\icons8-language-90.png" />
+    <None Include="wwwroot\Images\icons8-price-90.png" />
+    <None Include="wwwroot\Images\icons8-search-100.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,11 +26,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.23" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
     <PackageReference Include="ServiceStack.Interfaces" Version="6.11.0" />
   </ItemGroup>
 

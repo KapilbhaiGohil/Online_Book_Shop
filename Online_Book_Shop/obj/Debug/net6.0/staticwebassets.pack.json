@@ -5,12 +5,132 @@
       "PackagePath": "staticwebassets\\Online_Book_Shop.bundle.scp.css"
     },
     {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-author-100.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-author-100.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-book-90.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-book-90.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-catalog-90.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-catalog-90.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-date-96.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-date-96.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-dropdown-96.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-dropdown-96.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-earth-52.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-earth-52.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-error-64.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-error-64.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-language-90.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-language-90.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-ok-512.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-ok-512.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-price-90.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-price-90.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-purchase-96.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-purchase-96.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-review-96.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-review-96.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-search-100.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-search-100.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-users-90.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-users-90.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Admin\\AdminLayout.css",
+      "PackagePath": "staticwebassets\\css\\Admin\\AdminLayout.css"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Admin\\AdminLayout.min.css",
+      "PackagePath": "staticwebassets\\css\\Admin\\AdminLayout.min.css"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Admin\\Book.css",
+      "PackagePath": "staticwebassets\\css\\Admin\\Book.css"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Admin\\Book.min.css",
+      "PackagePath": "staticwebassets\\css\\Admin\\Book.min.css"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Admin\\Table.css",
+      "PackagePath": "staticwebassets\\css\\Admin\\Table.css"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Admin\\Table.min.css",
+      "PackagePath": "staticwebassets\\css\\Admin\\Table.min.css"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Admin\\Users.css",
+      "PackagePath": "staticwebassets\\css\\Admin\\Users.css"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Admin\\Users.min.css",
+      "PackagePath": "staticwebassets\\css\\Admin\\Users.min.css"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Home\\Index.css",
+      "PackagePath": "staticwebassets\\css\\Home\\Index.css"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Home\\Index.min.css",
+      "PackagePath": "staticwebassets\\css\\Home\\Index.min.css"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Shared\\Colors.css",
+      "PackagePath": "staticwebassets\\css\\Shared\\Colors.css"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Shared\\Colors.min.css",
+      "PackagePath": "staticwebassets\\css\\Shared\\Colors.min.css"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Shared\\HeaderAndFooter.css",
+      "PackagePath": "staticwebassets\\css\\Shared\\HeaderAndFooter.css"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\Shared\\HeaderAndFooter.min.css",
+      "PackagePath": "staticwebassets\\css\\Shared\\HeaderAndFooter.min.css"
+    },
+    {
       "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\js\\HeaderAndFooter.js",
+      "PackagePath": "staticwebassets\\js\\HeaderAndFooter.js"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\js\\Home.js",
+      "PackagePath": "staticwebassets\\js\\Home.js"
     },
     {
       "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\js\\site.js",

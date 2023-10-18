@@ -1,8 +1,59 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section style{
+    <link rel="stylesheet" asp-append-version="true" href="~/css/Home/Index.css" />
+}
+<div class="home-filter">
+    <div class="filter">
+        <ul>
+            <li id="genre-li">
+                <div>
+                    <img src="Images/icons8-catalog-90.png" />
+                    <p>Genre</p>
+                    <img id="gd" src="images/icons8-dropdown-96.png" />
+                </div>
+            </li>
+            <li id="language-li">
+                <div>
+                    <img src="Images/icons8-language-90.png" />
+                    <p>Language</p>
+                    <img id="ld" src="images/icons8-dropdown-96.png" />
+                </div>
+            </li>
+            <li id="year-li">
+                <div>
+                    <img src="Images/icons8-date-96.png" />
+                    <p>Publish Year</p>
+                    <img id="yd" src="images/icons8-dropdown-96.png" />
+                </div>
+            </li>
+            <li id="country-li">
+                <div>
+                    <img src="Images/icons8-earth-52.png" />
+                    <p>Country</p>
+                    <img id="cd" src="images/icons8-dropdown-96.png" />
+                </div>
+            </li>
+            <li id="price-li">
+                <div>
+                    <img src="Images/icons8-price-90.png" />
+                    <p>Price</p>
+                    <img id="pd" src="images/icons8-dropdown-96.png" />
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="search">
+        <div class="search-input">
+            <input type="text" placeholder="Search.." />
+        </div>
+        <div class="search-btn">
+            <img src="images/icons8-search-100.png" />
+        </div>
+    </div>
 </div>
+<div class="home-books">
+    
+</div>
+<script src="~/js/Home.js"></script>

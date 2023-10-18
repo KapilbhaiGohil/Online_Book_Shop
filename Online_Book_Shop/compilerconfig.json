@@ -1,10 +1,32 @@
 ﻿[
   {
-    "outputFile": "wwwroot/css/StyleSheet.css",
-    "inputFile": "Sass Filles/StyleSheet.scss"
+    "outputFile": "wwwroot/css/Shared/HeaderAndFooter.css",
+    "inputFile": "Sass Filles/Shared/HeaderAndFooter.scss"
   },
   {
-    "outputFile": "Sass Filles/new.css",
-    "inputFile": "Sass Filles/new.scss"
+    "outputFile": "wwwroot/css/Shared/Colors.css",
+    "inputFile": "Sass Filles/Shared/Colors.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Home/Index.css",
+    "inputFile": "Sass Filles/Home/Index.scss"
+  },
+
+  //for the admin
+  {
+    "outputFile": "wwwroot/css/Admin/Users.css",
+    "inputFile": "Sass Filles/Admin/Users.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Admin/AdminLayout.css",
+    "inputFile": "Sass Filles/Admin/AdminLayout.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Admin/Table.css",
+    "inputFile": "Sass Filles/Admin/Table.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Admin/Book.css",
+    "inputFile": "Sass Filles/Admin/Book.scss"
   }
 ]

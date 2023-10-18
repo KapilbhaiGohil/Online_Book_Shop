@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Online_Book_Shop</title>
+    <link rel="stylesheet" href="~/css/Shared/HeaderAndFooter.css" asp-append-version="true"/>
+    @RenderSection("style",required:false)
+</head>
+<body>
+    <div id="msg-container" style="display:none">
+        <div id="msg-outer">
+            <img id="img" src="images/icons8-error-64.png"  style="margin-right:0.6rem;width:1.4rem"/>
+            <p id="msg"></p>
+        </div>
+    </div>
+    <header>
+        <nav>
+            <div class="nav-outer">
+                <div class="nav-header">
+                    <span>The Book Vault</span>
+                </div>
+                <div class="nav-links-outer">
+                    <ul class="nav-links">
+                        <li id="database"><a asp-action="index" asp-controller="Admin">Database</a></li>
+                        <li id="home"><a asp-action="Index" asp-controller="Home" >Home</a></li>
+                        <li id="manage"><a>Manage Purchase</a></li>
+                        <li id="about"><a>About</a></li>
+                        <li id="feedback"><a>Feedback</a></li>
+                        <li id="login"><a>Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="outer">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+    <footer>
+
+    </footer>
+    @RenderSection("Script",required:false)
+    <script src="~/js/HeaderAndFooter.js"></script>
+    <script type="text/javascript">
+        let m = '@ViewData["msg"]';
+        let s = '@ViewData["status"]';
+        if(m!=""){
+            ShowMsg(m,s);
+        }
+        console.log(m.length)
+    </script>
+</body>
+</html>

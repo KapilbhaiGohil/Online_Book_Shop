@@ -11,18 +11,18 @@ namespace Online_Book_Shop.Models
         [StringLength(50)]
         public string Name { get; set; }
         [Required]
-        public DateTime Publish { get; set; }
+        public DateTime Publish { get; set; }=DateTime.Now;
         [Required]
         public string  Description { get; set; }
         [Required]
-        public string  Dimension { get; set; }
+        public string  Width { get; set; }
+        [Required]
+        public string Height { get; set; }
         [Required]
         public int Pages { get; set; }
         [Column(TypeName= "varchar(50)")]
         public BookType Type { get; set; }
-        public string CustomType { get; set; }
-        [Required]
-        public int Weight { get; set; }
+        public string CustomType { get; set; } = "";
         [Required]
         [StringLength(50)]
         public string Country { get; set; }
@@ -37,25 +37,25 @@ namespace Online_Book_Shop.Models
         public string ImageFileName { get; set; }
         [Required]
         public byte[] Image { get; set; }
-        public List<Author> Authors { get; set; }
-        public List<Review> Reviews { get; set; }
-        public Book( string name, DateTime publish, string description, string dimension, int pages, BookType type, string customType, int weight, string country, decimal price, Language language, string imageFileName, byte[] image, List<Author> authors, List<Review> reviews)
+        public List<User> Authors { get; set; }
+        public string ISBN { get; set; }
+        public Book( string name, DateTime publish,string width,string height, string description, int pages, BookType type, string customType, string country, decimal price, Language language, string imageFileName, byte[] image, List<User> authors, string isbn)
         {
             Name = name;
             Publish = publish;
             Description = description;
-            Dimension = dimension;
             Pages = pages;
             Type = type;
             CustomType = customType;
-            Weight = weight;
             Country = country;
             Price = price;
             Language = language;
             ImageFileName = imageFileName;
             Image = image;
             Authors = authors;
-            Reviews = reviews;
+            this.Width = width;
+            this.Height = height;
+            this.ISBN = isbn;
         }
         public Book() { }
     }

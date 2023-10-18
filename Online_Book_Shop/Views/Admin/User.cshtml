@@ -1,0 +1,93 @@
+﻿@model User
+@section style{
+    <link href="~/css/admin/Users.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/admin/Table.css" rel="stylesheet" asp-append-version="true" />
+    <style>
+        #users {
+            color: rgb(25, 195, 125);
+            font-weight: bold;
+        }
+    </style>
+}
+<partial name="PartialViews/AdminLayout.cshtml" />
+<div class="admin-main">
+    <div class="table">
+        @if (((List<User>)ViewData["Users"]).Count != 0)
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (User u in (List<User>)ViewData["users"])
+                    {
+                        <tr>
+                            <td>@u.Id</td>
+                            <td>@u.FirstName</td>
+                            <td>@u.LastName</td>
+                            <td>@u.Email</td>
+                            <td>@u.Password</td>
+                            <td>@u.Role</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h1>No Data</h1>
+        }
+    </div>
+    <form method="post">
+        <div class="add-user">
+
+            <div class="heading">
+                <h1>Add User</h1>
+            </div>
+            <div class="first-last">
+                <div>Name</div>
+                <div>
+                    <div>
+                        <input required placeholder="Firstname" asp-for="FirstName" />
+                    </div>
+                    <div>
+                        <input required placeholder="Lastname" asp-for="LastName" />
+                    </div>
+                </div>
+            </div>
+            <div class="email-pass">
+                <div>
+                    <label  asp-for="Email"></label>
+                    <input required placeholder="Email Address" asp-for="Email" />
+                </div>
+                <div>
+                    <label asp-for="Password"></label>
+                    <input required placeholder="Password " asp-for="Password" />
+                </div>
+
+            </div>
+            <div class="role-btn">
+                <div>
+                    <select asp-for="Role" required>
+                        <option value="">Select Role</option>
+                        <option value="Admin">Admin</option>
+                        <option value="User">User</option>
+                        <option value="Author">Author</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="submit">Add User</button>
+                </div>
+
+            </div>
+
+        </div>
+    </form>
+</div>

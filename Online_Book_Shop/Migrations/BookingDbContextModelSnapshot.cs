@@ -22,49 +22,6 @@ namespace Online_Book_Shop.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Online_Book_Shop.Models.Author", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<byte[]>("Image")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("ImageFileName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.ToTable("Authors");
-                });
-
             modelBuilder.Entity("Online_Book_Shop.Models.Book", b =>
                 {
                     b.Property<int>("Id")
@@ -86,9 +43,13 @@ namespace Online_Book_Shop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Dimension")
+                    b.Property<string>("Height")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<byte[]>("Image")
                         .IsRequired()
@@ -125,12 +86,13 @@ namespace Online_Book_Shop.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("Weight")
-                        .HasColumnType("int");
+                    b.Property<string>("Width")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
+                    b.HasIndex("ISBN")
                         .IsUnique();
 
                     b.HasIndex("PurchaseId");
@@ -170,9 +132,6 @@ namespace Online_Book_Shop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("BookId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -190,11 +149,14 @@ namespace Online_Book_Shop.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("bookId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("BookId");
-
                     b.HasIndex("UserId");
+
+                    b.HasIndex("bookId");
 
                     b.ToTable("Reviews");
                 });
@@ -206,6 +168,9 @@ namespace Online_Book_Shop.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("BookId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -229,17 +194,12 @@ namespace Online_Book_Shop.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BookId");
+
                     b.HasIndex("Email")
                         .IsUnique();
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Online_Book_Shop.Models.Author", b =>
-                {
-                    b.HasOne("Online_Book_Shop.Models.Book", null)
-                        .WithMany("Authors")
-                        .HasForeignKey("BookId");
                 });
 
             modelBuilder.Entity("Online_Book_Shop.Models.Book", b =>
@@ -262,24 +222,33 @@ namespace Online_Book_Shop.Migrations
 
             modelBuilder.Entity("Online_Book_Shop.Models.Review", b =>
                 {
-                    b.HasOne("Online_Book_Shop.Models.Book", null)
-                        .WithMany("Reviews")
-                        .HasForeignKey("BookId");
-
                     b.HasOne("Online_Book_Shop.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Online_Book_Shop.Models.Book", "book")
+                        .WithMany()
+                        .HasForeignKey("bookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("User");
+
+                    b.Navigation("book");
+                });
+
+            modelBuilder.Entity("Online_Book_Shop.Models.User", b =>
+                {
+                    b.HasOne("Online_Book_Shop.Models.Book", null)
+                        .WithMany("Authors")
+                        .HasForeignKey("BookId");
                 });
 
             modelBuilder.Entity("Online_Book_Shop.Models.Book", b =>
                 {
                     b.Navigation("Authors");
-
-                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("Online_Book_Shop.Models.Purchase", b =>

@@ -1,0 +1,128 @@
+﻿@model Book
+@section style{
+    <link href="~/css/admin/Users.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/admin/Table.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/admin/Book.css" rel="stylesheet" asp-append-version="true" />
+
+    <style>
+        #books {
+            color: rgb(25, 195, 125);
+            font-weight: bold;
+        }
+    </style>
+}
+
+<partial name="PartialViews/AdminLayout.cshtml" />
+<div class="admin-main">
+    <form method="post">
+        <div class="add-user">
+            <div class="heading">
+                <h1>Add Book</h1>
+            </div>
+            <div id="first-last" class="first-last">
+                <div>Name</div>
+                <div>
+                    <div>
+                        <input required placeholder="Book Name" asp-for="Name" />
+                    </div>
+                    <div class="role-btn" id="role-btn">
+                        <div>
+                            <select asp-for="Type" required>
+                                <option value="">Select Book Type</option>
+                                <option value="Admin">Admin</option>
+                                <option value="User">User</option>
+                                <option value="Author">Author</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="dimension"  class="first-last">
+                <div>Dimension</div>
+                <div>
+                    <div>
+                        <input required placeholder="Width" asp-for="Width" />
+                    </div>
+                    <div>
+                        <input required placeholder="Height" asp-for="Height" />
+                    </div>
+                </div>
+            </div>
+            <div class="email-pass">
+                <div class="select-divs" id="select-divs">
+                    <div>
+                        <select asp-for="Language" required>
+                            <option value="">Select Language</option>
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+                            <option value="Author">Author</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select asp-for="Country" required>
+                            <option value="">Select Country</option>
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+                            <option value="Author">Author</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label asp-for="Description"></label>
+                    <textarea required placeholder="Enter The Description For Book"  asp-for="Description"></textarea>
+                </div>
+                <div>
+                    <label asp-for="Price"></label>
+                    <input required type="number" placeholder="Enter Price" asp-for="Price" />
+                </div>
+                <div>
+                    <label asp-for="ISBN"></label>
+                    <input required type="string" placeholder="Enter ISBN number of book" asp-for="ISBN" />
+                </div>
+                <div>
+                    <label asp-for="Image"></label>
+                    <input required type="file"  asp-for="Image" />
+                </div>
+                <div>
+                    <input asp-for="Authors"/>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="table">
+        @if ((ViewData["Books"] as List<Book>).Count != 0)
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Book u in (List<Book>)ViewData["Books"])
+                    {
+                        <tr>
+                            <td>@u.Id</td>
+                            <td>@u.Name</td>
+                            <td>@u.Type</td>
+                            <td>@u.Description</td>
+                            <td>Dimensioin/td>
+                            <td>@u.Price</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h1>No Data Available Rigtht Now.</h1>
+            <h1> You Can Add By Filling The Form</h1>
+            
+        }
+    </div>
+</div>

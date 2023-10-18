@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Online_Book_Shop.Database;
 using Online_Book_Shop.Models;
 using System.Diagnostics;
 
@@ -7,14 +8,16 @@ namespace Online_Book_Shop.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly BookingDbContext _db;
+     
+        public HomeController(ILogger<HomeController> logger,BookingDbContext db)
         {
             _logger = logger;
+            _db = db;
         }
-
         public IActionResult Index()
         {
+            
             return View();
         }
 

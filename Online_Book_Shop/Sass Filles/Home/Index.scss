@@ -1,0 +1,108 @@
+﻿@import "../Shared/Colors.scss";
+#home{
+    color:$linkActive;
+    font-weight:bold;
+}
+    .home-filter {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-radius: inherit;
+        position: relative;
+        background: $navBackGround;
+        flex-wrap: wrap;
+
+        .filter {
+            ul {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                width: 100%;
+                height: 100%;
+
+
+                li {
+                    > div {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100%;
+                        height: 5vh;
+                        flex-wrap: wrap;
+
+                        > img {
+                            width: 1rem;
+                            margin-right: 0.3rem;
+                        }
+                    }
+
+                    cursor: pointer;
+                    padding: 0.4vw 1vw;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    ul {
+                        display: none;
+                        flex-direction: column;
+                        position: absolute;
+                        justify-content: center;
+                        align-items: center;
+                        top: 3.8rem;
+                        width: inherit;
+                        opacity: 1;
+                        flex-wrap: wrap;
+
+                        li {
+                            background: $navBackGround;
+
+                            &:hover {
+                                opacity: 0.8;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .search {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem ;
+
+            .search-input {
+                padding:0 2rem;
+                input {
+                    background: $bodyBack1;
+                    height:2.3rem;
+                    outline: none;
+                    border: none;
+                    font-size: 1.2rem;
+                    border-radius: 0.4rem;
+                    padding: 1rem;
+                    width:100%;
+                }
+            }
+
+            .search-btn {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                padding: 0.6rem;
+                box-shadow: 0 0 7px 0px;
+                cursor: pointer;
+
+                img {
+                    width: 1rem;
+                }
+            }
+        }
+    }
+
+    .home-books {
+    }
