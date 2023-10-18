@@ -37,3 +37,43 @@ textarea {
         }
     }
 }
+#result {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+
+    > p {
+        padding: 0.6rem;
+        background: black;
+        border-radius: 0.4rem;
+        cursor: pointer;
+        width: 100%;
+        background: $bodyBack3;
+
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+}
+#Authors {
+    width: 100%;
+    padding: 0.5rem;
+
+    #selected {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0.3rem;
+
+        button {
+            width: 6rem;
+            height: 2rem;
+            border-radius: 0.3rem;
+            outline: none;
+            border: none;
+            cursor:pointer;
+            background:$btnBtn2;
+        }
+    }
+}

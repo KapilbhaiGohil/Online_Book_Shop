@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Online_Book_Shop.Database;
 using Online_Book_Shop.Models;
 
@@ -32,14 +33,23 @@ namespace Online_Book_Shop.Controllers
                     TempData["msg"] = "New User Successfully Added";
                     TempData["status"] = "0";
                 }
-                catch(SqlException ex)
+                catch(DbUpdateException ex)
                 {
-                    if(ex.Number == 2601)
-                    TempData["msg"] = "Email already exists. Please use a different email address.";
-                    TempData["status"] = "1";
-                }catch(Exception ex)
+                    if (ex.InnerException is SqlException sqlException && sqlException.Number == 2601)
+                    {
+                        TempData["msg"] = "Email already exists. Please use a different email address.";
+                        TempData["status"] = "1";
+                    }
+                    else
+                    {
+                        TempData["msg"] = "An error occurred while saving the user.";
+                        TempData["status"] = "1";
+                    }
+                }
+                catch(Exception ex)
                 {
-                    TempData["msg"] = "Can't reach to the server right now. Pls try again after some time";
+                 
+                    TempData["msg"] = "Can Not reach to the server right now. Pls try again after some time";
                     TempData["status"] = "1";
                 }
             }
@@ -55,6 +65,20 @@ namespace Online_Book_Shop.Controllers
             List<Book> books = _db.Books.ToList();
             ViewData["Books"] = books;
             return View("Book");
+        }
+
+        [HttpPost]
+        public IActionResult SearchTags([FromBody] searchData search)
+        {
+
+            List<User> matching = _db.Users.Where(u => 
+                (u.FirstName+u.LastName).ToLower().Contains(search.search) && u.Role==Role.Author
+            ).ToList();
+            return Json(matching);
+        }
+        public class searchData
+        {
+            public string search { get; set; }
         }
     }
 }
