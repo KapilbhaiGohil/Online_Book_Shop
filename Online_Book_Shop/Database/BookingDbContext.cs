@@ -13,6 +13,7 @@ namespace Online_Book_Shop.Database
         public DbSet<Review>Reviews { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Purchase> Purchase { get; set; }
+        public DbSet<BookUser> BookUsers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

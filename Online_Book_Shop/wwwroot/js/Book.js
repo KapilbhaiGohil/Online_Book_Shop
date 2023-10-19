@@ -31,12 +31,12 @@ async function LiveSearch() {
 }
 let authors = document.getElementById("Authors");
 function AddAuthor(id, firstname, lastname) {
-    selectedAuthors.push({ id: id, firstName: firstname, lastName: lastname })
+    selectedAuthors.push({ UserId: id, firstName: firstname, lastName: lastname })
     document.getElementById("SearchTags").value = "";
     RefreshAuthor();
 }
 function RemoveAuthor(id) {
-    selectedAuthors = selectedAuthors.filter(a => a.id != id);
+    selectedAuthors = selectedAuthors.filter(a => a.UserId != id);
     availableOptions = [];
     RefreshAuthor();
     RefreshOption(false);
@@ -46,7 +46,7 @@ function RefreshAuthor() {
     for (let i = 0; i < selectedAuthors.length; i++) {
         updated += `<div id="selected">
                         <p>${selectedAuthors[i].firstName + ` ` + selectedAuthors[i].lastName}</p>
-                        <button type="button" onclick="RemoveAuthor(${selectedAuthors[i].id})">Remove</button>
+                        <button type="button" onclick="RemoveAuthor(${selectedAuthors[i].UserId})">Remove</button>
                 </div>`;
     }
     authors.innerHTML = updated;
@@ -57,11 +57,13 @@ function RefreshOption(showMsg=true) {
     console.log(availableOptions);
     let innerHtml = "";
     for (let i = 0; i < availableOptions.length; i++) {
-        let isOk = selectedAuthors.findIndex(au => au.id == availableOptions[i].id);
+        let isOk = selectedAuthors.findIndex(au => au.UserId == availableOptions[i].userId);
         if (isOk == -1) {
-            innerHtml += `<p onclick="AddAuthor(${availableOptions[i].id},'${availableOptions[i].firstName}','${availableOptions[i].lastName}')">${availableOptions[i].firstName + ` ` + availableOptions[i].lastName}</p>`
+            innerHtml += `<p onclick="AddAuthor(${availableOptions[i].userId},'${availableOptions[i].firstName}','${availableOptions[i].lastName}')">${availableOptions[i].firstName + ` ` + availableOptions[i].lastName}</p>`
         }
     }
+    console.log("selected authors",selectedAuthors)
+    console.log("available options",availableOptions)
     result.innerHTML = innerHtml;
     if (availableOptions.length == 0 && showMsg) {
         result.innerHTML = `<p>No Author Found with Given Name</p>`
@@ -127,7 +129,7 @@ btn.addEventListener("click", (e) => {
         let authorData = document.getElementById("authorData");
         authorData.value = JSON.stringify(selectedAuthors);
         console.log(authorData.value)
-        //form.submit();
+        form.submit();
     }
 })
 

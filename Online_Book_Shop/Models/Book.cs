@@ -6,7 +6,7 @@ namespace Online_Book_Shop.Models
     public class Book
     {
         [Key]
-        public int Id { get; set; }
+        public int BookId { get; set; }
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
@@ -35,10 +35,10 @@ namespace Online_Book_Shop.Models
         public Language Language { get; set; }
         [Required]
         public string ImageFileName { get; set; }
-        public List<User> Authors { get; set; }
+        public List<BookUser> Authors { get; set; }
         [Required]
         public string ISBN { get; set; }
-        public Book(string name,string width,string height, string description, int pages, BookType type, Country country, decimal price, Language language, string imageFileName, List<User> authors, string isbn)
+        public Book(string name,string width,string height, string description, int pages, BookType type, Country country, decimal price, Language language, string imageFileName, string isbn)
         {
             Name = name;
             Description = description;
@@ -48,7 +48,6 @@ namespace Online_Book_Shop.Models
             Price = price;
             Language = language;
             ImageFileName = imageFileName;
-            Authors = authors;
             this.Width = width;
             this.Height = height;
             this.ISBN = isbn;
@@ -101,6 +100,9 @@ namespace Online_Book_Shop.Models
         NewZelend,
         UnitedStateOfAmerica,
         ShriLanka,
+        Brazil,
+        UnitedKingdom,
+        Russia,
 
     }
 }

@@ -24,11 +24,11 @@ namespace Online_Book_Shop.Migrations
 
             modelBuilder.Entity("Online_Book_Shop.Models.Book", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BookId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"));
 
                     b.Property<string>("Country")
                         .IsRequired()
@@ -81,7 +81,7 @@ namespace Online_Book_Shop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("BookId");
 
                     b.HasIndex("ISBN")
                         .IsUnique();
@@ -89,6 +89,29 @@ namespace Online_Book_Shop.Migrations
                     b.HasIndex("PurchaseId");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("Online_Book_Shop.Models.BookUser", b =>
+                {
+                    b.Property<int>("BookUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookUserId"));
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookUserId");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BookUsers");
                 });
 
             modelBuilder.Entity("Online_Book_Shop.Models.Purchase", b =>
@@ -123,6 +146,9 @@ namespace Online_Book_Shop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -140,28 +166,22 @@ namespace Online_Book_Shop.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("bookId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("BookId");
 
-                    b.HasIndex("bookId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Online_Book_Shop.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("BookId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -183,9 +203,7 @@ namespace Online_Book_Shop.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
+                    b.HasKey("UserId");
 
                     b.HasIndex("Email")
                         .IsUnique();
@@ -198,6 +216,25 @@ namespace Online_Book_Shop.Migrations
                     b.HasOne("Online_Book_Shop.Models.Purchase", null)
                         .WithMany("Books")
                         .HasForeignKey("PurchaseId");
+                });
+
+            modelBuilder.Entity("Online_Book_Shop.Models.BookUser", b =>
+                {
+                    b.HasOne("Online_Book_Shop.Models.Book", "Book")
+                        .WithMany("Authors")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Online_Book_Shop.Models.User", "User")
+                        .WithMany("Books")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Online_Book_Shop.Models.Purchase", b =>
@@ -213,15 +250,15 @@ namespace Online_Book_Shop.Migrations
 
             modelBuilder.Entity("Online_Book_Shop.Models.Review", b =>
                 {
-                    b.HasOne("Online_Book_Shop.Models.User", "User")
+                    b.HasOne("Online_Book_Shop.Models.Book", "book")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Online_Book_Shop.Models.Book", "book")
+                    b.HasOne("Online_Book_Shop.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("bookId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -230,19 +267,17 @@ namespace Online_Book_Shop.Migrations
                     b.Navigation("book");
                 });
 
-            modelBuilder.Entity("Online_Book_Shop.Models.User", b =>
-                {
-                    b.HasOne("Online_Book_Shop.Models.Book", null)
-                        .WithMany("Authors")
-                        .HasForeignKey("BookId");
-                });
-
             modelBuilder.Entity("Online_Book_Shop.Models.Book", b =>
                 {
                     b.Navigation("Authors");
                 });
 
             modelBuilder.Entity("Online_Book_Shop.Models.Purchase", b =>
+                {
+                    b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("Online_Book_Shop.Models.User", b =>
                 {
                     b.Navigation("Books");
                 });

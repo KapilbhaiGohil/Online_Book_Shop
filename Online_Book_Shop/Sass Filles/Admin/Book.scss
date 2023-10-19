@@ -1,4 +1,5 @@
-﻿@import "../Shared/Colors.scss";
+﻿
+@import "../Shared/Colors.scss";
 #role-btn {
     padding-top: 0;
     width: 45%;
@@ -76,4 +77,9 @@ textarea {
             background:$btnBtn2;
         }
     }
+}
+
+#table {
+    max-height: 200vh;
+    max-width: 60vw;
 }

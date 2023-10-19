@@ -7,7 +7,7 @@ namespace Online_Book_Shop.Models
     public class User
     {
         [Key]
-        public int Id { get; set; }
+        public int UserId { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -19,6 +19,8 @@ namespace Online_Book_Shop.Models
         [Required]
         [Column(TypeName = "varchar(50)")]
         public Role Role { get; set; }
+
+        public List<BookUser>Books { get; set; }
         public User() { }
         public User(string firstName, string lastName, string email, string password, Role role)
         {

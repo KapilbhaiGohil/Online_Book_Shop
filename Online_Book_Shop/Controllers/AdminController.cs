@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Online_Book_Shop.Database;
 using Online_Book_Shop.Models;
 using ServiceStack.Web;
+using System.Net;
 
 namespace Online_Book_Shop.Controllers
 {
@@ -71,42 +73,62 @@ namespace Online_Book_Shop.Controllers
             return View("Book");
         }
         [HttpPost]
-        public IActionResult BookSubmit()   
+        public IActionResult BookSubmit(IFormFile Image)   
         {
-            try
+            string Name = Request.Form["Name"];
+            BookType Type; Enum.TryParse(Request.Form["Type"], out Type);
+            Country country; Enum.TryParse(Request.Form["Country"], out country);
+            Language ln; Enum.TryParse(Request.Form["Language"], out ln);
+            string Description = Request.Form["Description"];
+            string Height = Request.Form["Height"];
+            string Width = Request.Form["Width"];
+            int pages = Convert.ToInt32(Request.Form["Pages"]);
+            decimal Price = Convert.ToInt32(Request.Form["Price"]);
+            string ISBN = Request.Form["ISBN"];
+            List<User> row = JsonConvert.DeserializeObject<List<User>>(Request.Form["authorData"]);
+            List<User> Authors = new List<User>();
+            
+            using (IDbContextTransaction transaction = _db.Database.BeginTransaction())
             {
-                string Name = Request.Form["Name"];
-                BookType Type; Enum.TryParse(Request.Form["Type"], out Type);
-                Country country; Enum.TryParse(Request.Form["Country"], out country);
-                Language ln; Enum.TryParse(Request.Form["Language"], out ln);
-                string Description = Request.Form["Description"];
-                string Height = Request.Form["Height"];
-                string Width = Request.Form["Width"];
-                int pages = Convert.ToInt32(Request.Form["Pages"]);
-                decimal Price = Convert.ToInt32(Request.Form["Price"]);
-                string ISBN = Request.Form["ISBN"];
-                string imgName = Request.Form["image"];
-                List<User> row = JsonConvert.DeserializeObject<List<User>>(Request.Form["authorData"]);
-                List<User> Authors = new List<User>();
-                for (int i = 0; i < row.Count; i++)
+                try
                 {
-                    Authors.Add(_db.Users.Find(row[0].Id));
+                    //retriving the image
+                    IFormFile img = Image;
+                    if (img != null)
+                    {
+                        string uniqueFileName = uploadImage(img);
+                        Book b = new Book(
+                              Name, Width, Height, Description, pages,
+                              Type, country, Price, ln,
+                              uniqueFileName, ISBN
+                          );
+                        TempData["msg"] = "New Book Successfully Added";
+                        TempData["status"] = "0";
+                        _db.Books.Add(b);
+                        _db.SaveChanges();
+                        for (int i = 0; i < row.Count; i++)
+                        {
+                            User temp = _db.Users.Find(row[i].UserId);
+                            _db.BookUsers.Add(new BookUser(b.BookId, temp.UserId));
+                        }
+                        _db.SaveChanges();
+                        transaction.Commit();
+                    }
+                    else
+                    {
+                        TempData["msg"] = "Iform Image Files Is Null " + Request.Form.Files["Image"].ToString();
+                        TempData["status"] = "1";
+                        transaction.Rollback();
+                        throw new Exception("IMage null");
+                    }
                 }
-                //retriving the image
-               IFormFile img = Request.Form.Files["Image"];
-                string uniqueFileName = uploadImage(img);
-                Book b = new Book(
-                    Name,Width,Height,Description,pages,
-                    Type,country,Price,ln,
-                    uniqueFileName,Authors,ISBN
-                );
-                _db.Books.Add(b);
-                _db.SaveChanges();
-                return Json(new { Type,country,ln});
-            }
-            catch(Exception ex)
-            {
-                throw ex;
+                catch (SqlException ex)
+                {
+                    TempData["msg"] = "An error occurred while saving the Book.";
+                    TempData["status"] = "1";
+                    transaction.Rollback();
+                    throw ex;
+                }
             }
             return RedirectToAction("Book");
         }

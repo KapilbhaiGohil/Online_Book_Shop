@@ -13,7 +13,7 @@
 
 <partial name="PartialViews/AdminLayout.cshtml" />
 <div class="admin-main">
-    <form asp-action="BookSubmit" asp-controller="Admin" id="BookForm" method="post">
+    <form asp-action="BookSubmit" asp-controller="Admin" id="BookForm" enctype="multipart/form-data" method="post">
         <div class="add-user">
             <div class="heading">
                 <h1>Add Book</h1>
@@ -22,11 +22,11 @@
                 <div>Name</div>
                 <div>
                     <div>
-                        <input placeholder="Book Name" name="Name" />
+                        <input required placeholder="Book Name" name="Name" />
                     </div>
-                    <div class="role-btn" id="role-btn">
+                    <div  class="role-btn" id="role-btn">
                         <div>
-                            <select id="Type" name="Type">
+                            <select required id="Type" name="Type">
                                 <option value="">Select Book Type</option>
                                 <option value="Admin">Admin</option>
                                 <option value="User">User</option>
@@ -40,45 +40,45 @@
                 <div>Dimension (in inches)</div>
                 <div>
                     <div>
-                        <input placeholder="Width" name="Width" />
+                        <input required placeholder="Width" name="Width" />
                     </div>
                     <div>
-                        <input placeholder="Height" name="Height" />
+                        <input required placeholder="Height" name="Height" />
                     </div>
                 </div>
             </div>
             <div class="email-pass">
                 <div class="select-divs" id="select-divs">
                     <div>
-                        <select id="Language" name="Language">
+                        <select required id="Language" name="Language">
                             <option value="">Select Language</option>
                         </select>
                     </div>
                     <div>
-                        <select id="Country" name="Country">
+                        <select required id="Country" name="Country">
                             <option value="">Select Country</option>
                         </select>
                     </div>
                 </div>
                 <div>
                     <label id="Description"></label>
-                    <textarea placeholder="Enter The Description For Book" name="Description"></textarea>
+                    <textarea required placeholder="Enter The Description For Book" name="Description"></textarea>
                 </div>
                 <div>
                     <label id="Price">Price (In Rupees)</label>
-                    <input type="number" placeholder="Enter Price" name="Price" />
+                    <input required type="number" placeholder="Enter Price" name="Price" />
                 </div>
                 <div>
                     <label id="ISBN">ISBN</label>
-                    <input type="text" placeholder="Enter ISBN number of book" name="ISBN" />
+                    <input required type="text" placeholder="Enter ISBN number of book" name="ISBN" />
                 </div>
                 <div>
                     <label id="Pages">Pages</label>
-                    <input type="number" name="Pages" />
+                    <input required type="number" name="Pages" />
                 </div>
                 <div>
                     <label>Image</label>
-                    <input name="Image" type="file" id="Image" />
+                    <input required name="Image" type="file" id="Image" />
                 </div>
                 <div>
                     <label>Authors</label>
@@ -95,30 +95,34 @@
             </div>
         </div>
     </form>
-    <div class="table">
+    <div class="table" id="table">
         @if (ViewData["Books"] != null && (ViewData["Books"] as List<Book>).Count != 0)
         {
             <table>
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>FirstName</th>
-                        <th>LastName</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Role</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Pages</th>
+                        <th>Price</th>
+                        <th>Publish Time</th>
+                        <th>Country</th>
+                        <th>Language</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (Book u in (List<Book>)ViewData["Books"])
                     {
                         <tr>
-                            <td>@u.Id</td>
+                            <td>@u.BookId</td>
                             <td>@u.Name</td>
                             <td>@u.Type</td>
-                            <td>@u.Description</td>
-                            <td>Dimensioin/td>
-                            <td>@u.Price</td>
+                            <td>@u.Pages</td>
+                            <td>&#8377 @u.Price</td>
+                            <td>@u.Publish</td>
+                            <td>@u.Country</td>
+                            <td>@u.Language</td>
                         </tr>
                     }
                 </tbody>

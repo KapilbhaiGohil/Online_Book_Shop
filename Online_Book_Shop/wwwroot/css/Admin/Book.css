@@ -73,3 +73,8 @@ textarea {
   cursor: pointer;
   background: #9b59b6;
 }
+
+#table {
+  max-height: 200vh;
+  max-width: 60vw;
+}

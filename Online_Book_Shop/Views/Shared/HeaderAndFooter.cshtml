@@ -41,15 +41,14 @@
     <footer>
 
     </footer>
-    <script type="module" src="~/js/HeaderAndFooter.js"></script>
+    <script src="~/js/HeaderAndFooter.js"></script>
     <script type="text/javascript">
-        let m = '@ViewData["msg"]';
-        let s = '@ViewData["status"]';
+        let m = '@TempData["msg"]';
+        let s = '@TempData["status"]';
         if(m!=""){
             ShowMsg(m,s);
         }
         console.log(m.length)
-
     </script>
     @RenderSection("Script",required:false)
 </body>
