@@ -20,12 +20,13 @@ namespace Online_Book_Shop.Models
         public string Height { get; set; }
         [Required]
         public int Pages { get; set; }
+        [Required]
         [Column(TypeName= "varchar(50)")]
         public BookType Type { get; set; }
-        public string CustomType { get; set; } = "";
         [Required]
         [StringLength(50)]
-        public string Country { get; set; }
+        [Column(TypeName = "varchar(50)")]
+        public Country Country { get; set; }
         [Required]
         public Decimal Price { get; set; }
         [Required]
@@ -33,25 +34,20 @@ namespace Online_Book_Shop.Models
         [Column(TypeName = "varchar(50)")]
         public Language Language { get; set; }
         [Required]
-        [MaxLength(50)]
         public string ImageFileName { get; set; }
-        [Required]
-        public byte[] Image { get; set; }
         public List<User> Authors { get; set; }
+        [Required]
         public string ISBN { get; set; }
-        public Book( string name, DateTime publish,string width,string height, string description, int pages, BookType type, string customType, string country, decimal price, Language language, string imageFileName, byte[] image, List<User> authors, string isbn)
+        public Book(string name,string width,string height, string description, int pages, BookType type, Country country, decimal price, Language language, string imageFileName, List<User> authors, string isbn)
         {
             Name = name;
-            Publish = publish;
             Description = description;
             Pages = pages;
             Type = type;
-            CustomType = customType;
             Country = country;
             Price = price;
             Language = language;
             ImageFileName = imageFileName;
-            Image = image;
             Authors = authors;
             this.Width = width;
             this.Height = height;
@@ -91,8 +87,20 @@ namespace Online_Book_Shop.Models
         Comedy,
         Action,
         Horror,
-        Novels,
+        Novel,
         Religious,
         Spiritual,
+    }
+    public enum Country
+    {
+        India,
+        Japan,
+        Pakistan,
+        Bangladesh,
+        China,
+        NewZelend,
+        UnitedStateOfAmerica,
+        ShriLanka,
+
     }
 }

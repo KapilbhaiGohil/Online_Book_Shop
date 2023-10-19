@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Online_Book_Shop</title>
     <link rel="stylesheet" href="~/css/Shared/HeaderAndFooter.css" asp-append-version="true"/>
-    @RenderSection("style",required:false)
+    @RenderSection("Style",required:false)
 </head>
 <body>
     <div id="msg-container" style="display:none">
         <div id="msg-outer">
-            <img id="img" src="images/icons8-error-64.png"  style="margin-right:0.6rem;width:1.4rem"/>
+            <img id="img" src="~/Images/icons8-error-64.png"  style="margin-right:0.6rem;width:1.4rem"/>
             <p id="msg"></p>
         </div>
     </div>
@@ -41,8 +41,7 @@
     <footer>
 
     </footer>
-    @RenderSection("Script",required:false)
-    <script src="~/js/HeaderAndFooter.js"></script>
+    <script type="module" src="~/js/HeaderAndFooter.js"></script>
     <script type="text/javascript">
         let m = '@ViewData["msg"]';
         let s = '@ViewData["status"]';
@@ -50,6 +49,8 @@
             ShowMsg(m,s);
         }
         console.log(m.length)
+
     </script>
+    @RenderSection("Script",required:false)
 </body>
 </html>

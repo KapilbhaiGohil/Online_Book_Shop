@@ -36,4 +36,8 @@
     <PackageReference Include="ServiceStack.Interfaces" Version="6.11.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\BookImages\" />
+  </ItemGroup>
+
 </Project>

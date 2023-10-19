@@ -1,5 +1,4 @@
-﻿@model Book
-@section style{
+﻿@section style{
     <link href="~/css/admin/Users.css" rel="stylesheet" asp-append-version="true" />
     <link href="~/css/admin/Table.css" rel="stylesheet" asp-append-version="true" />
     <link href="~/css/admin/Book.css" rel="stylesheet" asp-append-version="true" />
@@ -14,7 +13,7 @@
 
 <partial name="PartialViews/AdminLayout.cshtml" />
 <div class="admin-main">
-    <form method="post">
+    <form asp-action="BookSubmit" asp-controller="Admin" id="BookForm" method="post">
         <div class="add-user">
             <div class="heading">
                 <h1>Add Book</h1>
@@ -23,11 +22,11 @@
                 <div>Name</div>
                 <div>
                     <div>
-                        <input required placeholder="Book Name" asp-for="Name" />
+                        <input placeholder="Book Name" name="Name" />
                     </div>
                     <div class="role-btn" id="role-btn">
                         <div>
-                            <select asp-for="Type" required>
+                            <select id="Type" name="Type">
                                 <option value="">Select Book Type</option>
                                 <option value="Admin">Admin</option>
                                 <option value="User">User</option>
@@ -37,65 +36,67 @@
                     </div>
                 </div>
             </div>
-            <div id="dimension"  class="first-last">
-                <div>Dimension</div>
+            <div id="dimension" class="first-last">
+                <div>Dimension (in inches)</div>
                 <div>
                     <div>
-                        <input required placeholder="Width" asp-for="Width" />
+                        <input placeholder="Width" name="Width" />
                     </div>
                     <div>
-                        <input required placeholder="Height" asp-for="Height" />
+                        <input placeholder="Height" name="Height" />
                     </div>
                 </div>
             </div>
             <div class="email-pass">
                 <div class="select-divs" id="select-divs">
                     <div>
-                        <select asp-for="Language" required>
+                        <select id="Language" name="Language">
                             <option value="">Select Language</option>
-                            <option value="Admin">Admin</option>
-                            <option value="User">User</option>
-                            <option value="Author">Author</option>
                         </select>
                     </div>
                     <div>
-                        <select asp-for="Country" required>
+                        <select id="Country" name="Country">
                             <option value="">Select Country</option>
-                            <option value="Admin">Admin</option>
-                            <option value="User">User</option>
-                            <option value="Author">Author</option>
                         </select>
                     </div>
                 </div>
                 <div>
-                    <label asp-for="Description"></label>
-                    <textarea required placeholder="Enter The Description For Book"  asp-for="Description"></textarea>
+                    <label id="Description"></label>
+                    <textarea placeholder="Enter The Description For Book" name="Description"></textarea>
                 </div>
                 <div>
-                    <label asp-for="Price"></label>
-                    <input required type="number" placeholder="Enter Price" asp-for="Price" />
+                    <label id="Price">Price (In Rupees)</label>
+                    <input type="number" placeholder="Enter Price" name="Price" />
                 </div>
                 <div>
-                    <label asp-for="ISBN"></label>
-                    <input required type="string" placeholder="Enter ISBN number of book" asp-for="ISBN" />
+                    <label id="ISBN">ISBN</label>
+                    <input type="text" placeholder="Enter ISBN number of book" name="ISBN" />
                 </div>
                 <div>
-                    <label asp-for="Image"></label>
-                    <input required type="file"  asp-for="Image" />
+                    <label id="Pages">Pages</label>
+                    <input type="number" name="Pages" />
                 </div>
                 <div>
-                    <label asp-for="Authors">Authors</label>
-                    <input id="SearchTags" asp-for="Authors" autocomplete="off" />
+                    <label>Image</label>
+                    <input name="Image" type="file" id="Image" />
+                </div>
+                <div>
+                    <label>Authors</label>
+                    <input id="SearchTags" placeholder="Enter atleast three letters for searching" autocomplete="off" />
                     <div id="result"></div>
-                    <div class="Authors" id="Authors">
-
+                    <div class="Authors" id="Authors"></div>
+                </div>
+                <input type="hidden" name="AuthorData" id="authorData"/>
+                <div class="role-btn">
+                    <div style="width:100%">
+                        <button type="button" id="BookFormBtn">Add Book</button>
                     </div>
                 </div>
             </div>
         </div>
     </form>
     <div class="table">
-        @if ((ViewData["Books"] as List<Book>).Count != 0)
+        @if (ViewData["Books"] != null && (ViewData["Books"] as List<Book>).Count != 0)
         {
             <table>
                 <thead>
@@ -127,73 +128,10 @@
         {
             <h1>No Data Available Rigtht Now.</h1>
             <h1> You Can Add By Filling The Form</h1>
-            
+
         }
     </div>
 </div>
-<script type="text/javascript">
-    let timeout = null;
-    let result = document.getElementById("result");
-    let selectedAuthors = [];
-    let availableOptions = [];
-    document.getElementById("SearchTags").addEventListener("keyup", () => {
-        clearTimeout(timeout)
-        timeout = setTimeout(async()=>{
-            await LiveSearch();
-        },400)
-    });
-    async function LiveSearch(){
-        let value = document.getElementById("SearchTags").value;
-        if (value.length > 2) {
-            const res = await fetch("/Admin/SearchTags", {
-                body: JSON.stringify({ search: value }),
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json",
-                },
-            });
-            console.log(res);
-            const data = await res.json();
-            availableOptions = data
-            RefreshOption();
-        }else{
-            result.innerHTML = "";
-        }
-    }
-    let authors = document.getElementById("Authors");
-    function AddAuthor(id,firstname,lastname) {
-        selectedAuthors.push({id:id,firstName:firstname,lastName:lastname})
-        RefreshAuthor();
-    }
-    function RemoveAuthor(id){
-        selectedAuthors = selectedAuthors.filter(a=>a.id!=id);
-        RefreshAuthor();
-        RefreshOption();
-    }
-    function RefreshAuthor() {
-        let updated = '';
-        for (let i = 0; i < selectedAuthors.length; i++) {
-            updated += `<div id="selected">
-                        <p>${selectedAuthors[i].firstName + ` ` + selectedAuthors[i].lastName}</p>
-                        <button type="button" onclick="RemoveAuthor(${selectedAuthors[i].id})">Remove</button>
-                </div>`;
-        }
-        authors.innerHTML = updated;
-        RefreshOption()
-    }
-    function RefreshOption(){
-        console.log(selectedAuthors);
-        console.log(availableOptions);
-        let innerHtml = "";
-        for (let i = 0; i < availableOptions.length; i++) {
-            let isOk = selectedAuthors.findIndex(au=>au.id==availableOptions[i].id);
-            if (isOk == -1) {
-                innerHtml += `<p onclick="AddAuthor(${availableOptions[i].id},'${availableOptions[i].firstName}','${availableOptions[i].lastName}')">${availableOptions[i].firstName + ` ` + availableOptions[i].lastName}</p>`
-            }
-        }
-        result.innerHTML = innerHtml;
-        if (availableOptions.length == 0) {
-            result.innerHTML = `<p>No AddAuthor Found with Given Name</p>`
-        }
-    }
-</script>
+@section Script{
+    <script src="~/js/Book.js"></script>
+}

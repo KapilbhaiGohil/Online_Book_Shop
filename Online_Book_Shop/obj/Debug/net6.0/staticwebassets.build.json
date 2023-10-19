@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "K2z43rZJteNjvAeZ5ovwRpmF2Zwp+6k1aJc+0Pncmmw=",
+  "Hash": "xItKxw+mcqLiwNLtVW32nFQbHmJ6SOV9UQb/mzyQcWo=",
   "Source": "Online_Book_Shop",
   "BasePath": "_content/Online_Book_Shop",
   "Mode": "Default",
@@ -323,6 +323,23 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\BookImages\\092589ff-a9a3-45e4-a6ec-1b67ea8af795_icons8-purchase-96.png",
+      "SourceId": "Online_Book_Shop",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\",
+      "BasePath": "_content/Online_Book_Shop",
+      "RelativePath": "Images/BookImages/092589ff-a9a3-45e4-a6ec-1b67ea8af795_icons8-purchase-96.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\BookImages\\092589ff-a9a3-45e4-a6ec-1b67ea8af795_icons8-purchase-96.png"
+    },
+    {
       "Identity": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-author-100.png",
       "SourceId": "Online_Book_Shop",
       "SourceType": "Discovered",
@@ -559,6 +576,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\icons8-users-90.png"
+    },
+    {
+      "Identity": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\js\\Book.js",
+      "SourceId": "Online_Book_Shop",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\",
+      "BasePath": "_content/Online_Book_Shop",
+      "RelativePath": "js/Book.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Book.js"
     },
     {
       "Identity": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\js\\HeaderAndFooter.js",
