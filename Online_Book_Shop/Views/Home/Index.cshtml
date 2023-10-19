@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Home Page";
 }
 @section style{
@@ -54,6 +55,49 @@
     </div>
 </div>
 <div class="home-books">
-    
+    <div class="book-row">
+        <div class="heading">
+            <h1>Popular Books of the week</h1>
+        </div>
+        <div id="books" class="books">
+            <div class="book">
+                <div class="book-img">
+                    <img src="~/Images/BookImages/16c19cfc-8d97-4ab1-9ff9-d569c4654b50_the sielent patient.webp"/>
+                </div>
+                <div class="book-info">
+                    <div class="date">
+                        <img src="/Images//icons8-date-96.png" />
+                        <span>19/01/3002</span>
+                    </div>
+                    <div class="book-name">
+                        <h3>Book Name</h3>
+                    </div>
+                    <div class="book-price">
+                        7890.00/-
+                    </div>
+                    <div class="desc">
+                        this is good book to bye plaslkf asoj sdfjsk
+
+                    </div>
+                    <div class="rating">
+                        <img src="~/Images/icons8-star-filled-96.png" />
+                        <img src="~/Images/icons8-star-filled-96.png" />
+                        <img src="~/Images/icons8-star-filled-96.png" />
+                        <img src="~/Images/icons8-star-filled-96.png" />
+                        <img src="~/Images/icons8-star-half-empty-90.png" />
+                    </div>
+                    <div class="cart-btn">
+                        <input type="button" value="Add To Cart"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<script src="~/js/Home.js"></script>
+@section script{
+    <script type="text/javascript">
+        let bookList = @Html.Raw(Json.Serialize(@ViewData["BookList"])) ;
+        console.log(bookList);
+    </script>
+    <script src="~/js/Home.js"></script>
+}

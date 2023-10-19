@@ -19,8 +19,6 @@ namespace Online_Book_Shop.Models
         [Required]
         [Column(TypeName = "varchar(50)")]
         public Role Role { get; set; }
-
-        public List<BookUser>Books { get; set; }
         public User() { }
         public User(string firstName, string lastName, string email, string password, Role role)
         {

@@ -61,7 +61,9 @@ namespace Online_Book_Shop.Controllers
             }
             else
             {
-                TempData["msg"] = "Invalid Details";
+                TempData["msg"] = string.Join("; ", ModelState.Values
+                                        .SelectMany(x => x.Errors)
+                                        .Select(x => x.ErrorMessage)); ;
                 TempData["status"] = "1";
             }
             return RedirectToAction("Index");

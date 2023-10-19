@@ -1,108 +1,225 @@
 ﻿@import "../Shared/Colors.scss";
-#home{
-    color:$linkActive;
-    font-weight:bold;
-}
-    .home-filter {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        border-radius: inherit;
-        position: relative;
-        background: $navBackGround;
-        flex-wrap: wrap;
 
-        .filter {
-            ul {
-                list-style: none;
+#home {
+    color: $linkActive;
+    font-weight: bold;
+}
+
+.home-filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: inherit;
+    position: relative;
+    background: $navBackGround;
+    flex-wrap: wrap;
+
+    .filter {
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
+            height: 100%;
+
+
+            li {
+                > div {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 5vh;
+                    flex-wrap: wrap;
+
+                    > img {
+                        width: 1rem;
+                        margin-right: 0.3rem;
+                    }
+                }
+
+                cursor: pointer;
+                padding: 0.4vw 1vw;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                flex-wrap: wrap;
+
+                ul {
+                    display: none;
+                    flex-direction: column;
+                    position: absolute;
+                    justify-content: center;
+                    align-items: center;
+                    top: 3.8rem;
+                    width: inherit;
+                    opacity: 1;
+                    flex-wrap: wrap;
+
+                    li {
+                        background: $navBackGround;
+
+                        &:hover {
+                            opacity: 0.8;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .search {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+
+        .search-input {
+            padding: 0 2rem;
+
+            input {
+                background: $bodyBack1;
+                height: 2.3rem;
+                outline: none;
+                border: none;
+                font-size: 1.2rem;
+                border-radius: 0.4rem;
+                padding: 1rem;
                 width: 100%;
-                height: 100%;
+            }
+        }
 
+        .search-btn {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            padding: 0.6rem;
+            box-shadow: 0 0 7px 0px;
+            cursor: pointer;
 
-                li {
-                    > div {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+            img {
+                width: 1rem;
+            }
+        }
+    }
+}
+
+.home-books {
+    .book-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 3rem;
+
+        .heading {
+            color: $text1;
+            border-bottom: 1px solid;
+            width: 100%;
+        }
+
+        .books {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            max-width: 100%;
+            /*overflow: auto;*/
+            > div {
+                margin-right: 3rem;
+            }
+
+            .book {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                box-shadow: 0 0 12px 0px rgb(255 255 255);
+                border-radius: 0.4rem;
+                width: 14vw;
+                height: 70vh;
+
+                .book-img {
+                    margin: 1rem;
+                    border-radius: 0.4rem;
+                    border: 5px solid transparent;
+                    background: linear-gradient(to right, #ca4747, #f4c922);
+                    width: 10rem;
+                    height: 15rem;
+
+                    img {
                         width: 100%;
-                        height: 5vh;
-                        flex-wrap: wrap;
+                        height:100%;
+                    }
+                }
 
-                        > img {
+                .book-info {
+                    display: flex;
+                    flex-direction: column;
+                    align-items:center;
+                    width: 100%;
+                    height: 20rem;
+                    padding:0.4rem;
+                    > div {
+                        padding-bottom: 0.4rem;
+                    }
+
+                    .date {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        padding-top: 0.4rem;
+
+                        img {
                             width: 1rem;
                             margin-right: 0.3rem;
                         }
                     }
 
-                    cursor: pointer;
-                    padding: 0.4vw 1vw;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    .book-name {
+                        font-size: 1.4rem;
+                        text-transform: capitalize;
+                    }
 
-                    ul {
-                        display: none;
-                        flex-direction: column;
-                        position: absolute;
-                        justify-content: center;
-                        align-items: center;
-                        top: 3.8rem;
-                        width: inherit;
-                        opacity: 1;
-                        flex-wrap: wrap;
+                    .book-price {
+                        font-size: 1.2rem;
+                        font-weight: bold;
+                        font-family: italic;
+                        font-palette: normal;
+                    }
 
-                        li {
-                            background: $navBackGround;
+                    .desc {
+                        text-align: justify;
+                        max-width: 11rem;
+                    }
 
-                            &:hover {
-                                opacity: 0.8;
-                            }
+                    .rating {
+                        img {
+                            width: 1.6rem;
+                        }
+                    }
+
+                    .cart-btn {
+                        width: 100%;
+
+
+                        input {
+                            width: 100%;
+                            outline: none;
+                            border: none;
+                            cursor: pointer;
+                            background: $btnBack;
+                            height: 2.3rem;
+                            border-radius: 0.4rem;
+                            margin-bottom: 0.4rem;
                         }
                     }
                 }
             }
         }
-
-        .search {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 1rem ;
-
-            .search-input {
-                padding:0 2rem;
-                input {
-                    background: $bodyBack1;
-                    height:2.3rem;
-                    outline: none;
-                    border: none;
-                    font-size: 1.2rem;
-                    border-radius: 0.4rem;
-                    padding: 1rem;
-                    width:100%;
-                }
-            }
-
-            .search-btn {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-                padding: 0.6rem;
-                box-shadow: 0 0 7px 0px;
-                cursor: pointer;
-
-                img {
-                    width: 1rem;
-                }
-            }
-        }
     }
-
-    .home-books {
-    }
+}

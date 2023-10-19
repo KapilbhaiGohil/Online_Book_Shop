@@ -17,7 +17,7 @@ namespace Online_Book_Shop.Controllers
         }
         public IActionResult Index()
         {
-            
+            ViewData["BookList"] = _db.Books.ToList();
             return View();
         }
 
