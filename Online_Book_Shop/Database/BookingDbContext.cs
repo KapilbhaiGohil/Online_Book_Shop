@@ -14,6 +14,7 @@ namespace Online_Book_Shop.Database
         public DbSet<Book> Books { get; set; }
         public DbSet<Purchase> Purchase { get; set; }
         public DbSet<BookUser> BookUsers { get; set; }
+        public DbSet<Cart> Cart { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

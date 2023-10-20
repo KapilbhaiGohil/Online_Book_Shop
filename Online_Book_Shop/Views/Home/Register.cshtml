@@ -1,0 +1,57 @@
+﻿@model User;
+@section style{
+    <link href="~/css/Home/Register.css" rel="stylesheet" asp-append-version="true"/>
+    <style>
+        .add-user {
+            width: 35vw;
+        }
+        .first-last{
+            width: 100%;    
+        }
+        .first-last div{
+            width: 100%;
+        }
+    </style>
+}
+<form method="post">
+    <div class="add-user">
+        <div class="heading">
+            <h1>Register</h1>
+        </div>
+        <div class="first-last">
+            <div>Name</div>
+            <div>
+                <div>
+                    <input required placeholder="Firstname" asp-for="FirstName" />
+                </div>
+                <div>
+                    <input required placeholder="Lastname" asp-for="LastName" />
+                </div>
+            </div>
+        </div>
+        <div class="email-pass">
+            <div>
+                <label asp-for="Email"></label>
+                <input required placeholder="Email Address" asp-for="Email" />
+            </div>
+            <div>
+                <label asp-for="Password"></label>
+                <input required placeholder="Password " asp-for="Password" />
+            </div>
+
+        </div>
+        <div class="role-btn">
+            <div>
+                <select asp-for="Role" required>
+                    <option value="">Select Role</option>
+                    <option value="User">User</option>
+                    <option value="Author">Author</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit">Register</button>
+            </div>
+        </div>
+        <span style="margin-top:2rem;">Already Have Account? <a asp-action="Login" asp-controller="Home">Login</a></span>
+    </div>
+</form>

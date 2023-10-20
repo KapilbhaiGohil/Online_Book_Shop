@@ -28,19 +28,27 @@
                         <li id="about"><a>About</a></li>
                         <li id="feedback"><a>Feedback</a></li>
                         <li id="login"><a>Login</a></li>
+                        <li id="cart">
+                            <img src="~/Images/icons8-purchase-96.png"/>
+                            <a>Cart</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     <div class="outer">
-        <main role="main">
+        <main id="main" role="main">
             @RenderBody()
         </main>
     </div>
     <footer>
 
     </footer>
+    <script type="text/javascript">
+        let UserId = @Context.Session.GetString("userid");
+        console.log("This is user id"+UserId);
+    </script>
     <script src="~/js/HeaderAndFooter.js"></script>
     <script type="text/javascript">
         let m = '@TempData["msg"]';

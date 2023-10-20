@@ -1,0 +1,35 @@
+﻿@model User;
+@section style{
+    <link href="~/css/Home/Register.css" rel="stylesheet" asp-append-version="true" />
+    <style>
+        .add-user{
+            width: 35vw;
+        }
+    </style>
+}
+<form method="post">
+    <div class="add-user">
+        <div class="heading">
+            <h1>Login</h1>
+        </div>
+        <div class="email-pass">
+            <div>
+                <label asp-for="Email"></label>
+                <input required placeholder="Email Address" asp-for="Email" />
+            </div>
+            <div>
+                <label asp-for="Password"></label>
+                <input required placeholder="Password " asp-for="Password" />
+            </div>
+        </div>
+        <div class="role-btn">
+            <div style="width:20vw;">
+                <span style="margin-top:2rem;">Do Not Have Account?<a asp-action="Register" asp-controller="Home">Register</a></span>
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </div>
+  
+    </div>
+</form>

@@ -124,6 +124,7 @@
   flex-direction: column;
   box-shadow: 0 0 12px 0px rgb(255, 255, 255);
   border-radius: 0.4rem;
+  background: #343541;
 }
 .home-books .book-row .books .book .book-img {
   margin: 1rem;
@@ -213,4 +214,230 @@
 }
 .home-books .book-row .books .back-arr img {
   width: 2rem;
+}
+
+.home-full {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 3vw;
+  padding: 1vw;
+  background: #343541;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 12px 0px rgb(255, 255, 255);
+  flex-wrap: wrap;
+}
+.home-full .full-img {
+  width: 14rem;
+  height: 22rem;
+  margin: 0 2rem;
+}
+.home-full .full-img img {
+  width: 14rem;
+  height: 22rem;
+}
+.home-full .full-desc {
+  padding: 0 1rem;
+  width: 55vw;
+}
+.home-full .full-desc .full-desc-head {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.home-full .full-desc .full-desc-head h1 {
+  font-family: "Times New Roman", Times, serif;
+}
+.home-full .full-desc .full-desc-rating {
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.home-full .full-desc .full-desc-rating p {
+  margin-right: 1rem;
+}
+.home-full .full-desc .full-desc-rating img {
+  width: 2rem;
+}
+.home-full .full-desc .full-text {
+  font-size: 1.03rem;
+  line-height: 1.4rem;
+  letter-spacing: 0.03rem;
+}
+.home-full .full-desc .full-text p {
+  font-family: "Times New Roman", Times, serif;
+  text-align: justify;
+}
+.home-full .full-desc .full-book-info {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.home-full .full-desc .full-book-info > div {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.home-full .full-desc .full-book-info > div img {
+  width: 2rem;
+  margin: 1rem 0;
+}
+.home-full .full-cart .price-info {
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.3rem;
+}
+.home-full .full-cart .quentity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7rem 0;
+  background: #3498db;
+  border-radius: 0.4rem;
+  margin: 0.6rem 0;
+}
+.home-full .full-cart .quentity > div {
+  display: inline-flex;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  width: 100%;
+  justify-content: center;
+  font-weight: bold;
+}
+.home-full .full-cart .quentity > div select {
+  width: 30%;
+  color: inherit;
+  outline: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: end;
+}
+.home-full .full-cart .quentity > div select option {
+  background: #40414f;
+}
+.home-full .full-cart button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 11rem;
+  height: 3rem;
+  outline: none;
+  border: none;
+  background: #16a085;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+.home-full .full-cart button img {
+  margin: 0 0.3rem;
+  width: 2rem;
+}
+
+#cartFull {
+  margin: 3vw;
+  padding: 1vw;
+  background: #343541;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 12px 0px rgb(255, 255, 255);
+}
+#cartFull .cart-heading {
+  font-size: 1.4rem;
+  padding: 0.3rem 0;
+  border-bottom: 2px solid;
+}
+#cartFull .cart-total {
+  padding: 1rem;
+  border-top: 2px solid;
+  text-align: end;
+}
+#cartFull .cart-outer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#cartFull .cart-outer .cart-body {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  background: #343541;
+  margin: 1rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 0 0 white;
+}
+#cartFull .cart-outer .cart-img img {
+  width: 7rem;
+  height: 11rem;
+}
+#cartFull .cart-outer .cart-info {
+  padding: 0 3rem;
+}
+#cartFull .cart-outer .cart-info > div {
+  padding-bottom: 0.7rem;
+}
+#cartFull .cart-outer .buttons {
+  display: flex;
+  flex-direction: row;
+}
+#cartFull .cart-outer .buttons .quentity {
+  width: 6rem;
+  height: 2rem;
+  margin-right: 1rem;
+}
+#cartFull .cart-outer .buttons .quentity > div {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  padding: 0.3rem;
+  background: #16a085;
+  border-radius: 0.4rem;
+}
+#cartFull .cart-outer .buttons .quentity > div select {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+#cartFull .cart-outer .buttons .quentity > div select option {
+  background: #40414f;
+}
+#cartFull .cart-outer .buttons .delete-btn {
+  width: 6rem;
+  border-radius: 0.4rem;
+  background: #3498db;
+}
+#cartFull .cart-outer .buttons .delete-btn button {
+  outline: none;
+  background: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+#cartFull .buy-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  border-radius: 0.4rem;
+  background: #9b59b6;
+}
+#cartFull .buy-btn button {
+  width: 100%;
+  height: 3rem;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
 }

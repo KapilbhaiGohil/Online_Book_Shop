@@ -21,24 +21,24 @@ namespace Online_Book_Shop.Models
         [Required]
         public int Pages { get; set; }
         [Required]
-        [Column(TypeName= "varchar(50)")]
-        public BookType Type { get; set; }
+        public string Type { get; set; }
         [Required]
         [StringLength(50)]
-        [Column(TypeName = "varchar(50)")]
-        public Country Country { get; set; }
+      
+        public string Country { get; set; }
         [Required]
         public Decimal Price { get; set; }
         [Required]
         [StringLength(50)]
-        [Column(TypeName = "varchar(50)")]
-        public Language Language { get; set; }
+      
+        public string Language { get; set; }
         [Required]
         public string ImageFileName { get; set; }
-        public List<BookUser> Authors { get; set; }
+        [NotMapped]
+        public List<User> Authors { get; set; }
         [Required]
         public string ISBN { get; set; }
-        public Book(string name,string width,string height, string description, int pages, BookType type, Country country, decimal price, Language language, string imageFileName, string isbn)
+        public Book(string name,string width,string height, string description, int pages, string type, string country, decimal price, string language, string imageFileName, string isbn)
         {
             Name = name;
             Description = description;

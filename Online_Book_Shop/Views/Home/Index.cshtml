@@ -54,9 +54,10 @@
         </div>
     </div>
 </div>
-<div id="home-books" class="home-books">
-   
-</div>
+<div id="cartFull" style="display:none"></div>
+<div id="detailInfo" style="display:none"></div>
+<div id="home-books" class="home-books"></div>
+
 @section script{
     <script type="text/javascript">
         let bookList = @Html.Raw(Json.Serialize(@ViewData["BookList"])) ;

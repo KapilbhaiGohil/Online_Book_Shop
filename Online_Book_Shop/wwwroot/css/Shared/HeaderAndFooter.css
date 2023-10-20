@@ -5,6 +5,7 @@
   box-sizing: border-box;
   text-decoration: none;
   color: inherit;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -52,9 +53,19 @@ body .nav-outer .nav-links-outer .nav-links {
   justify-content: space-evenly;
   cursor: pointer;
   flex-wrap: wrap;
+  align-items: center;
 }
 body .nav-outer .nav-links-outer .nav-links li {
   padding-right: 2rem;
+}
+body .nav-outer .nav-links-outer .nav-links #cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .nav-outer .nav-links-outer .nav-links #cart img {
+  width: 2rem;
+  margin-right: 0.6rem;
 }
 body main {
   margin: 2vw 2vw;

@@ -123,13 +123,18 @@ function addOptions() {
 let btn = document.getElementById("BookFormBtn");
 let form = document.getElementById("BookForm");
 btn.addEventListener("click", (e) => {
-    if (authors.innerHTML == '') {
-        ShowMsg("Select The Atleast One Author", 1);
+    if (form.checkValidity()) {
+        if (authors.innerHTML == '') {
+            ShowMsg("Select The Atleast One Author", 1);
+        } else {
+            let authorData = document.getElementById("authorData");
+            authorData.value = JSON.stringify(selectedAuthors);
+            console.log(authorData.value)
+            form.submit();
+        }
     } else {
-        let authorData = document.getElementById("authorData");
-        authorData.value = JSON.stringify(selectedAuthors);
-        console.log(authorData.value)
-        form.submit();
+        ShowMsg("Pls Fill All The Details", 1);
     }
+ 
 })
 

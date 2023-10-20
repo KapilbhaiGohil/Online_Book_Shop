@@ -11,7 +11,14 @@
     "outputFile": "wwwroot/css/Home/Index.css",
     "inputFile": "Sass Filles/Home/Index.scss"
   },
-
+  {
+    "outputFile": "wwwroot/css/Home/Login.css",
+    "inputFile": "Sass Filles/Home/Login.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Home/Register.css",
+    "inputFile": "Sass Filles/Home/Register.scss"
+  },
   //for the admin
   {
     "outputFile": "wwwroot/css/Admin/Users.css",

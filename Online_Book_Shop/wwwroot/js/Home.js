@@ -84,7 +84,7 @@ function GiveBook(book) {
                         <img src="/Images/icons8-star-half-empty-90.png" />
                     </div>
                     <div  class="cart-btn">
-                        <input onclick="ShowFullInfo('${encodeURIComponent(stringifiedObj)}')" type="button" value="View Info"/>
+                        <input onclick="ShowFullInfo(${book.bookId})" type="button" value="View Info"/>
                     </div>
                 </div>
             </div>
@@ -134,15 +134,242 @@ function AdjustBtnDisplay(backBtn, rightBtn,currIndex,MaxIndex) {
     else left.style.display = "none";
     if (currIndex  == MaxIndex-1) right.style.display = "none";
     else right.style.display = "block";
-
 }
 
 
 
 
 //Book Full INformation Page Display
-function ShowFullInfo(book) {
-    let bookObj = JSON.parse(decodeURIComponent(book));
-    document.getElementById("home-books").style.display = "none";
-    console.log(bookObj);
+let cart = [];
+getCartDataFromDatabase();
+let fullInfoOuter = document.getElementById("detailInfo");
+function ShowFullInfo(id) {
+    let bookObj = bookList.find(b => b.bookId==id);
+    console.log(bookObj, id);
+    fullInfoOuter.innerHTML = GiveDetailInfoBook(bookObj);
+    document.getElementById('cartFull').style.display = "none";
+    fullInfoOuter.style.display = "block";
+    document.getElementsByTagName("header")[0].scrollIntoView();
+
+}
+function AddToCart(id) {
+    let bookObj = bookList.find(b => b.bookId == id);
+    storeInDatabase(bookObj);
+}
+function RemoveFromCart(id) {
+    let bookObj = bookList.find(b => b.bookId == id);
+    removeFromDatabase(bookObj);
+}
+async function removeFromDatabase() {
+    const res = await fetch("/Home/RemoveItemFromCart", {
+        body: JSON.stringify({ Book: bookObj, UserId }),
+        headers: {
+            "Content-Type": "Application/json"
+        },
+        method: "POST"
+    })
+    if (res.ok) {
+        cart.push(bookObj);
+        console.log(bookObj);
+        fullInfoOuter.style.display = "none";
+        ShowMsg("Item Removed Successfully", 0);
+    } else {
+        ShowMsg("Server Error occurred while Removing Item", 1);
+    }
+}
+async function storeInDatabase(bookObj) {
+    const res = await fetch("/Home/AddItemToCart", {
+        body: JSON.stringify({ Book:bookObj, UserId }),
+        headers: {
+            "Content-Type":"Application/json"
+        },
+        method:"POST"
+    })
+    if (res.ok) {
+        cart.push(bookObj);
+        console.log(bookObj);
+        fullInfoOuter.style.display = "none";
+        ShowMsg("Item Added Successfully", 0);
+    } else {
+        ShowMsg("Server Error occurred while Adding Item", 1);
+    }
+       
+}
+async function getCartDataFromDatabase() {
+    const res = await fetch("/Home/GetCartData", {
+        body: JSON.stringify({ ival: UserId }),
+        headers: {
+            "Content-Type": "Application/json"
+        },
+        method: "POST"
+    })
+    if (res.ok) {
+        const data = await res.json();
+        console.log("cart data", data);
+        for (let i = 0; i < data.length; i++) {
+            cart.push(data[i]);
+        }
+    } else {
+        ShowMsg("Unable To Retrive The Cart Data",1);
+    }
+}
+function GiveDetailInfoBook(book) {
+    return `
+        <div id="home-full" class="home-full">
+    <div class="full-img">
+        <img src="/Images//BookImages/${book.imageFileName}"/>
+    </div>
+    <div class="full-desc">
+        <div class="full-desc-head">
+            <h1>${book.name}</h1>
+            <p>by ${book.authors.map(a=>a.firstName + a.lastName+' ')}(Author)</p>
+        </div>
+        <div class="full-desc-rating">
+            <div>
+                <p>4.6</p>
+            </div>
+            <div>
+                <img src="/Images/icons8-star-filled-96.png" />
+                <img src="/Images/icons8-star-filled-96.png" />
+                <img src="/Images/icons8-star-filled-96.png" />
+                <img src="/Images/icons8-star-filled-96.png" />
+                <img src="/Images/icons8-star-half-empty-90.png" />
+            </div>
+            <div style="margin-left:1rem;">
+                <p>11 rating</p>
+            </div>
+        </div>
+        <div class="full-text">
+            <p>${book.description}</p>
+
+        </div>
+        <div class="full-book-info">
+            <div>
+                <p>Print length</p>
+                <img src="/Images/icons8-pages-100.png"/>
+                <p><b>${book.pages} pages</b></p>
+            </div>
+             <div>
+                <p>Language</p>
+                <img src="/Images/icons8-earth-52.png"/>
+                <p><b>${book.language}</b></p>
+            </div>
+            <div>
+                <p>Publication date</p>
+                <img src="/Images/icons8-date-96.png" />
+                <p><b>${book.publish.substr(0,10)}</b></p>
+            </div>
+            <div>
+                <p>Dimensions</p>
+                <img src="/Images/icons8-dimension-96.png" />
+                <p>
+                    <b>
+                        ${book.width} x ${book.height} inch
+                    </b>
+                </p>
+            </div>
+            <div>
+                <p>ISBN - 13</p>
+                <img src="/Images/icons8-barcode-64.png" />
+                <p>
+                    <b>
+                        ${book.isbn}
+                    </b>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="full-cart">
+        <div class="price-info">
+            <p><b>${book.price.toLocaleString("en-IN", {
+                style: "currency",
+                currency: "INR"
+            })}</b></p>
+        </div>
+        <button onclick="AddToCart(${book.bookId})" type="button">
+            <img src="/Images/icons8-purchase-96.png" />
+            <p>Add To Cart</p>
+        </button>
+    </div>
+</div>
+    `
+}
+
+
+
+//show cart information
+let cartEle = document.getElementById('cartFull')
+//cartEle.style.display = "none";
+let cartBtnEle = document.getElementById('cart');
+cartBtnEle.addEventListener('click', () => {
+    cartEle.innerHTML = getCart();
+    cartEle.style.display = "block";
+});
+function getCart() {
+    return `
+    <div class="cart-heading">
+            <h2>Shopping Cart</h2>
+        </div>
+        <div class="cart-outer">
+        
+        `+ getAllCartItems(cart) +`
+    </div>
+       <div class="cart-total">
+            <h3>Subtotal (1 item) :1,295.00</h3>
+        </div>
+     <div class="buy-btn">
+            <button>Procceed To Buy</button>
+        </div>
+    `
+}
+function getAllCartItems(cart) {
+    let content = ``;
+    for (let i = 0; i < cart.length; i++) {
+        content += getCartItem(cart[i]);
+    }
+    return content;
+}
+function getCartItem(book) {
+    return `
+        <div class="cart-body">
+            <div class="cart-img">
+                <img src="/Images/BookImages/${book.imageFileName}" />
+            </div>
+            <div class="cart-info">
+                <div>
+                    <h2>${book.name}
+                    </h2>
+                </div>
+                <div>
+                    <h4>${book.authors.map(a => a.firstName + a.lastName+'(Author)')}</h4>
+                </div>
+                <div>
+                    <p>${book.price.toLocaleString("en-IN", {
+                        style: "currency",
+                        currency: "INR"
+                    })}</p>
+                </div>
+                <div>
+                    <p style="color:green;">In stock</p>
+                </div>
+                <div class="buttons">
+                    <div class="quentity">
+                            <div>
+                                <p>Qty.</p>
+                                <select id="quentity" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                    </div>
+                    <div class="delete-btn">
+                        <button onclick="deleteItem(${book.bookId})">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `
 }

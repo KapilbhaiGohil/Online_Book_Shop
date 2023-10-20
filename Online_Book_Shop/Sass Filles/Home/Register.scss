@@ -1,0 +1,116 @@
+﻿@import "../Shared/Colors.scss";
+.add-user {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    background: #202123;
+    color: $text1;
+
+    .heading {
+    }
+
+    .first-last {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-top: 1rem;
+
+        > div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            > div {
+                width: 45%;
+            }
+        }
+    }
+
+    .email-pass {
+        width: 100%;
+
+        > div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-top: 1rem;
+        }
+    }
+
+    .role-btn {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        width: 100%;
+        padding-top: 1rem;
+
+        > div {
+            width: 32%;
+            height: 2rem;
+        }
+
+        button {
+            width: 100%;
+            height: 100%;
+            border-radius: 0.4rem;
+            background: $BtnBackImp;
+            outline: none;
+            border: none;
+            cursor: pointer;
+        }
+    }
+
+    input {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.4rem;
+        padding: 0.4rem;
+        color: inherit;
+        font-size: 1rem;
+        outline: none;
+        border: none;
+        background: $bodyBack2;
+    }
+}
+select {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.4rem;
+    background: $bodyBack2;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    box-shadow: none;
+    backdrop-filter: blur(3px);
+    margin: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    right: 0;
+    height: 100%;
+}
+
+.add-user {
+}
+
+.heading {
+    text-align: center;
+    width: 100%;
+}
+
+a {
+    color:$BtnBackImp;
+}

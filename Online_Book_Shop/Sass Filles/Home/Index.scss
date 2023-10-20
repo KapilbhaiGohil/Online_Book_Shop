@@ -144,7 +144,7 @@
                 flex-direction: column;
                 box-shadow: 0 0 12px 0px rgb(255 255 255);
                 border-radius: 0.4rem;
-
+                background: $bodyBack3;
                 .book-img {
                     margin: 1rem;
                     border-radius: 0.4rem;
@@ -253,6 +253,273 @@
                     width: 2rem;
                 }
             }
+        }
+    }
+}
+
+.home-full {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 3vw;
+    padding: 1vw;
+    background: $bodyBack3;
+    border-radius: 0.4rem;
+    box-shadow: 0 0 12px 0px rgb(255, 255, 255);
+    flex-wrap: wrap;
+
+    .full-img {
+        width: 14rem;
+        height: 22rem;
+        margin: 0 2rem;
+
+        img {
+            width: 14rem;
+            height: 22rem;
+        }
+    }
+
+    .full-desc {
+        padding: 0 1rem;
+        width: 55vw;
+
+        .full-desc-head {
+            font-size: 1.3rem;
+            font-weight: bold;
+
+            h1 {
+                font-family: 'Times New Roman', Times, serif;
+            }
+        }
+
+        .full-desc-rating {
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            p {
+                margin-right: 1rem;
+            }
+
+            img {
+                width: 2rem;
+            }
+        }
+
+        .full-text {
+            font-size: 1.03rem;
+            line-height: 1.4rem;
+            letter-spacing: 0.03rem;
+
+            p {
+                font-family: 'Times New Roman', Times, serif;
+                text-align: justify;
+            }
+        }
+
+        .full-book-info {
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            > div {
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 2rem;
+                    margin: 1rem 0;
+                }
+            }
+        }
+    }
+
+    .full-cart {
+        .price-info {
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .quentity {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.7rem 0;
+            background: $btnBack;
+            border-radius: 0.4rem;
+            margin: 0.6rem 0;
+
+            > div {
+                display: inline-flex;
+                padding: 0.3rem;
+                border-radius: 0.3rem;
+                width: 100%;
+                justify-content: center;
+                font-weight: bold;
+
+                select {
+                    width: 30%;
+                    color: inherit;
+                    outline: none;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    text-align: end;
+
+                    option {
+                        background: $bodyBack2;
+                    }
+                }
+            }
+        }
+
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 11rem;
+            height: 3rem;
+            outline: none;
+            border: none;
+            background: $BtnBackImp;
+            border-radius: 0.4rem;
+            cursor: pointer;
+            font-weight: bold;
+
+            img {
+                margin: 0 0.3rem;
+                width: 2rem;
+            }
+        }
+    }
+}
+#cartFull {
+    margin: 3vw;
+    padding: 1vw;
+    background: $bodyBack3;
+    border-radius: 0.4rem;
+    box-shadow: 0 0 12px 0px rgb(255, 255, 255);
+
+    .cart-heading {
+        font-size: 1.4rem;
+        padding: 0.3rem 0;
+        border-bottom: 2px solid;
+    }
+
+    .cart-total {
+        padding: 1rem;
+        border-top: 2px solid;
+        text-align: end;
+    }
+
+    .cart-outer {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+
+        .cart-body {
+            padding: 1rem;
+            display: flex;
+            justify-content: flex-start;
+            background: $bodyBack3;
+            margin: 1rem;
+            border-radius: 0.4rem;
+            box-shadow: 0 0 0 0 white;
+        }
+
+        .cart-img {
+            img {
+                width: 7rem;
+                height: 11rem;
+            }
+        }
+
+        .cart-info {
+            padding: 0 3rem;
+
+            > div {
+                padding-bottom: 0.7rem;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: row;
+
+            .quentity {
+                width: 6rem;
+                height: 2rem;
+                margin-right: 1rem;
+
+
+                > div {
+                    display: flex;
+                    width: 100%;
+                    height: 100%;
+                    align-items: center;
+                    padding: 0.3rem;
+                    background: $BtnBackImp;
+                    border-radius: 0.4rem;
+
+                    select {
+                        width: 100%;
+                        height: 100%;
+                        outline: none;
+                        border: none;
+                        background: none;
+                        cursor: pointer;
+
+                        option {
+                            background: $bodyBack2;
+                        }
+                    }
+                }
+            }
+
+            .delete-btn {
+                width: 6rem;
+                border-radius: 0.4rem;
+                background: $btnBack;
+
+                button {
+                    outline: none;
+                    background: none;
+                    border: none;
+                    width: 100%;
+                    height: 100%;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .buy-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 3rem;
+        border-radius: 0.4rem;
+        background: $btnBtn2;
+
+        button {
+            width: 100%;
+            height: 3rem;
+            outline: none;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
         }
     }
 }

@@ -6,6 +6,7 @@
     box-sizing: border-box;
     text-decoration: none;
     color:inherit;
+    scroll-behavior:smooth;
 }
 
 body {
@@ -56,9 +57,21 @@ body {
                 justify-content: space-evenly;
                 cursor: pointer;
                 flex-wrap: wrap;
+                align-items: center;
 
                 li {
                     padding-right: 2rem;
+                }
+
+                #cart {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 2rem;
+                        margin-right: 0.6rem;
+                    }
                 }
             }
         }

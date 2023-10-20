@@ -23,8 +23,6 @@ namespace Online_Book_Shop.Controllers
         {
             List<User> users = _db.Users.ToList();
             ViewData["Users"] = users;
-            ViewData["msg"] = TempData["msg"];
-            ViewData["status"] = TempData["status"];
             return View("User");
         }
         [HttpPost]
@@ -101,7 +99,7 @@ namespace Online_Book_Shop.Controllers
                         string uniqueFileName = uploadImage(img);
                         Book b = new Book(
                               Name, Width, Height, Description, pages,
-                              Type, country, Price, ln,
+                              Type.ToString(), country.ToString(), Price, ln.ToString(),
                               uniqueFileName, ISBN
                           );
                         TempData["msg"] = "New Book Successfully Added";
