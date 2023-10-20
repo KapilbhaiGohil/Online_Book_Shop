@@ -117,6 +117,10 @@
       "PackagePath": "staticwebassets\\Images\\icons8-author-100.png"
     },
     {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-back-96.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-back-96.png"
+    },
+    {
       "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-book-90.png",
       "PackagePath": "staticwebassets\\Images\\icons8-book-90.png"
     },
@@ -141,8 +145,16 @@
       "PackagePath": "staticwebassets\\Images\\icons8-error-64.png"
     },
     {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-forward-96.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-forward-96.png"
+    },
+    {
       "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-language-90.png",
       "PackagePath": "staticwebassets\\Images\\icons8-language-90.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-left-arrow-96.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-left-arrow-96.png"
     },
     {
       "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-ok-512.png",
@@ -159,6 +171,10 @@
     {
       "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-review-96.png",
       "PackagePath": "staticwebassets\\Images\\icons8-review-96.png"
+    },
+    {
+      "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-right-arrow-90.png",
+      "PackagePath": "staticwebassets\\Images\\icons8-right-arrow-90.png"
     },
     {
       "Id": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-search-100.png",

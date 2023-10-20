@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hhU+ulL6ib5ixY0K/ZLdieSKtnw3T838OVuLxhtG6oU=",
+  "Hash": "Nbks5wh/AogOpd2LxP/PSYPWoRN7Yh9g2+ZPEQyKRk0=",
   "Source": "Online_Book_Shop",
   "BasePath": "_content/Online_Book_Shop",
   "Mode": "Default",
@@ -799,6 +799,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\icons8-author-100.png"
     },
     {
+      "Identity": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-back-96.png",
+      "SourceId": "Online_Book_Shop",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\",
+      "BasePath": "_content/Online_Book_Shop",
+      "RelativePath": "Images/icons8-back-96.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\icons8-back-96.png"
+    },
+    {
       "Identity": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-book-90.png",
       "SourceId": "Online_Book_Shop",
       "SourceType": "Discovered",
@@ -901,6 +918,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\icons8-error-64.png"
     },
     {
+      "Identity": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-forward-96.png",
+      "SourceId": "Online_Book_Shop",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\",
+      "BasePath": "_content/Online_Book_Shop",
+      "RelativePath": "Images/icons8-forward-96.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\icons8-forward-96.png"
+    },
+    {
       "Identity": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-language-90.png",
       "SourceId": "Online_Book_Shop",
       "SourceType": "Discovered",
@@ -916,6 +950,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\icons8-language-90.png"
+    },
+    {
+      "Identity": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-left-arrow-96.png",
+      "SourceId": "Online_Book_Shop",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\",
+      "BasePath": "_content/Online_Book_Shop",
+      "RelativePath": "Images/icons8-left-arrow-96.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\icons8-left-arrow-96.png"
     },
     {
       "Identity": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-ok-512.png",
@@ -984,6 +1035,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\icons8-review-96.png"
+    },
+    {
+      "Identity": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-right-arrow-90.png",
+      "SourceId": "Online_Book_Shop",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\",
+      "BasePath": "_content/Online_Book_Shop",
+      "RelativePath": "Images/icons8-right-arrow-90.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\icons8-right-arrow-90.png"
     },
     {
       "Identity": "E:\\5TH SEM\\WAD\\.netCoreMVCProject\\Online_Book_Shop\\wwwroot\\Images\\icons8-search-100.png",

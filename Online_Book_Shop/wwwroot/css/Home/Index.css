@@ -95,7 +95,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 3rem;
+  padding: 3vw;
+  position: relative;
 }
 .home-books .book-row .heading {
   color: #E0E0E0;
@@ -107,12 +108,14 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
-  max-width: 100%;
+  padding: 2vw;
+  width: 100%;
+  transition: 0.7s ease-in-out;
   /*overflow: auto;*/
+  flex-wrap: wrap;
 }
 .home-books .book-row .books > div {
-  margin-right: 3rem;
+  margin: 1.5vw;
 }
 .home-books .book-row .books .book {
   display: flex;
@@ -121,8 +124,6 @@
   flex-direction: column;
   box-shadow: 0 0 12px 0px rgb(255, 255, 255);
   border-radius: 0.4rem;
-  width: 14vw;
-  height: 70vh;
 }
 .home-books .book-row .books .book .book-img {
   margin: 1rem;
@@ -133,15 +134,14 @@
   height: 15rem;
 }
 .home-books .book-row .books .book .book-img img {
-  width: 100%;
-  height: 100%;
+  width: 9.4rem;
+  height: 14.4rem;
 }
 .home-books .book-row .books .book .book-info {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 20rem;
   padding: 0.4rem;
 }
 .home-books .book-row .books .book .book-info > div {
@@ -170,6 +170,7 @@
 .home-books .book-row .books .book .book-info .desc {
   text-align: justify;
   max-width: 11rem;
+  text-transform: lowercase;
 }
 .home-books .book-row .books .book .book-info .rating img {
   width: 1.6rem;
@@ -186,4 +187,30 @@
   height: 2.3rem;
   border-radius: 0.4rem;
   margin-bottom: 0.4rem;
+}
+.home-books .book-row .books .forward-arr {
+  position: absolute;
+  top: 50%;
+  background: black;
+  border-radius: 0.4rem;
+  width: 2rem;
+  margin: 0;
+  cursor: pointer;
+  right: 3vw;
+}
+.home-books .book-row .books .forward-arr img {
+  width: 2rem;
+}
+.home-books .book-row .books .back-arr {
+  position: absolute;
+  top: 50%;
+  left: 3vw;
+  background: black;
+  border-radius: 0.4rem;
+  width: 2rem;
+  margin: 0;
+  cursor: pointer;
+}
+.home-books .book-row .books .back-arr img {
+  width: 2rem;
 }
