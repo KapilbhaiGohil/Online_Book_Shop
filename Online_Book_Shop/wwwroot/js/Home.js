@@ -142,7 +142,12 @@ function AdjustBtnDisplay(backBtn, rightBtn,currIndex,MaxIndex) {
 //Book Full INformation Page Display
 let cart = [];
 getCartDataFromDatabase();
+
+
 let fullInfoOuter = document.getElementById("detailInfo");
+function calculatePrice() {
+    cart.totalPrice = cart.reduce((acc, c) => acc + (c.book.price * c.quentity), 0)
+}
 function ShowFullInfo(id) {
     let bookObj = bookList.find(b => b.bookId==id);
     console.log(bookObj, id);
@@ -155,12 +160,13 @@ function ShowFullInfo(id) {
 function AddToCart(id) {
     let bookObj = bookList.find(b => b.bookId == id);
     storeInDatabase(bookObj);
+
 }
 function RemoveFromCart(id) {
     let bookObj = bookList.find(b => b.bookId == id);
     removeFromDatabase(bookObj);
 }
-async function removeFromDatabase() {
+async function removeFromDatabase(bookObj) {
     const res = await fetch("/Home/RemoveItemFromCart", {
         body: JSON.stringify({ Book: bookObj, UserId }),
         headers: {
@@ -169,10 +175,12 @@ async function removeFromDatabase() {
         method: "POST"
     })
     if (res.ok) {
-        cart.push(bookObj);
+        cart = cart.filter(c => c.book.bookId != bookObj.bookId)
         console.log(bookObj);
         fullInfoOuter.style.display = "none";
         ShowMsg("Item Removed Successfully", 0);
+        console.log("cart data after removing", cart);
+        RefreshCart();
     } else {
         ShowMsg("Server Error occurred while Removing Item", 1);
     }
@@ -186,7 +194,7 @@ async function storeInDatabase(bookObj) {
         method:"POST"
     })
     if (res.ok) {
-        cart.push(bookObj);
+        cart.push({ book: bookObj, quentity: 1, userid:UserId });
         console.log(bookObj);
         fullInfoOuter.style.display = "none";
         ShowMsg("Item Added Successfully", 0);
@@ -213,6 +221,27 @@ async function getCartDataFromDatabase() {
         ShowMsg("Unable To Retrive The Cart Data",1);
     }
 }
+async function changeQuentity(id) {
+    let bookObjInd = cart.findIndex(b => b.book.bookId == id);
+    let bookObj = cart[bookObjInd].book;
+    let quentity = document.getElementById(`quentity${id}`).value;
+    const res = await fetch("/Home/changeQuentity", {
+        body: JSON.stringify({ userId: UserId, book: bookObj, quentity: quentity }),
+        headers: {
+            "Content-Type": "Application/json"
+        },
+        method: "POST"
+    })
+    if (res.ok) {
+        cart.totalPrice += (bookObj.price) * (quentity - 1);
+        cart[bookObjInd].quentity = quentity;
+        RefreshCart();
+    } else {
+        ShowMsg("Error While Changing Quentity",1);
+        document.getElementById(`quentity${id}`).value = quentity;
+    }
+}
+
 function GiveDetailInfoBook(book) {
     return `
         <div id="home-full" class="home-full">
@@ -302,9 +331,21 @@ let cartEle = document.getElementById('cartFull')
 //cartEle.style.display = "none";
 let cartBtnEle = document.getElementById('cart');
 cartBtnEle.addEventListener('click', () => {
-    cartEle.innerHTML = getCart();
-    cartEle.style.display = "block";
+    if (cartEle.style.display == 'block') {
+        cartEle.style.display = "none";
+    } else {
+        RefreshCart();
+        cartEle.style.display = "block";
+    }
+    if (document.getElementById('home-full')) {
+        document.getElementById("home-full").style.display = "none"
+    }
+ 
 });
+function RefreshCart() {
+    calculatePrice();
+    cartEle.innerHTML = getCart();
+}
 function getCart() {
     return `
     <div class="cart-heading">
@@ -314,22 +355,28 @@ function getCart() {
         
         `+ getAllCartItems(cart) +`
     </div>
-       <div class="cart-total">
-            <h3>Subtotal (1 item) :1,295.00</h3>
-        </div>
-     <div class="buy-btn">
-            <button>Procceed To Buy</button>
-        </div>
+    ${cart.length > 0 ? `<div class="cart-total">
+        <h3> Subtotal(${ cart.length } item) : ${ cart.totalPrice }</h3 >
+        </div >
+        <div class="buy-btn">
+            <button onclick="cartPurchase()">Procceed To Buy</button>
+        </div>`:""}
     `
 }
 function getAllCartItems(cart) {
+    if (cart.length == 0) return `
+      <div class="cart-body">
+          <h1>No Cart Item Found</h1>
+      </div>
+  
+    `
     let content = ``;
     for (let i = 0; i < cart.length; i++) {
-        content += getCartItem(cart[i]);
+        content += getCartItem(cart[i].book, cart[i].quentity);
     }
     return content;
 }
-function getCartItem(book) {
+function getCartItem(book,quentity) {
     return `
         <div class="cart-body">
             <div class="cart-img">
@@ -356,20 +403,38 @@ function getCartItem(book) {
                     <div class="quentity">
                             <div>
                                 <p>Qty.</p>
-                                <select id="quentity" required>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
+                                <select onchange="changeQuentity(${book.bookId})" selected=${quentity} id="quentity${book.bookId}" required>
+                                    <option ${quentity==1?"selected":""} value="1">1</option>
+                                    <option ${quentity == 2 ? "selected" : ""} value="2">2</option>
+                                    <option ${quentity == 3 ? "selected" : ""} value="3">3</option>
+                                    <option ${quentity == 4 ? "selected" : ""} value="4">4</option>
+                                    <option ${quentity == 5 ? "selected" : ""} value="5">5</option>
                                 </select>
                             </div>
                     </div>
                     <div class="delete-btn">
-                        <button onclick="deleteItem(${book.bookId})">Delete</button>
+                        <button onclick="RemoveFromCart(${book.bookId})">Delete</button>
                     </div>
                 </div>
             </div>
         </div>
     `
+}
+
+async function cartPurchase(){
+    const res = await fetch("/Home/cartPurchase", {
+        body: JSON.stringify({ ival: UserId }),
+        headers: {
+            "Content-Type": "Application/json"
+        },
+        method: "POST"
+    });
+    if (res.ok) {
+        ShowMsg("Order Placed Succesfully", 0);
+        cart = [];
+        cartEle.style.display = "none";
+    } else {
+        ShowMsg("Server Error While Placing Order", 1);
+    }
+    console.log(res);
 }

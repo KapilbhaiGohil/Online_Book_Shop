@@ -16,6 +16,13 @@ namespace Online_Book_Shop.DTO
             this.userid = userid;
             this.Book = book;
         }
+        public AddToCart(Book book,int quentity)
+        {
+            this.Book = book;
+            this.quentity = quentity;
+        }
+        public AddToCart() { }
+        public int quentity { get; set; }
     }
     public class singleValue
     {

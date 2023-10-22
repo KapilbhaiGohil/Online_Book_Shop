@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Online_Book_Shop.Database;
 
@@ -11,9 +12,11 @@ using Online_Book_Shop.Database;
 namespace Online_Book_Shop.Migrations
 {
     [DbContext(typeof(BookingDbContext))]
-    partial class BookingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231022015437_purchaseModelUpdattion")]
+    partial class purchaseModelUpdattion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,32 +167,6 @@ namespace Online_Book_Shop.Migrations
                     b.ToTable("Purchase");
                 });
 
-            modelBuilder.Entity("Online_Book_Shop.Models.PurchaseBook", b =>
-                {
-                    b.Property<int>("PurchaseBookId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PurchaseBookId"));
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PurchaseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("quentity")
-                        .HasColumnType("int");
-
-                    b.HasKey("PurchaseBookId");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("PurchaseId");
-
-                    b.ToTable("PurchaseBook");
-                });
-
             modelBuilder.Entity("Online_Book_Shop.Models.Review", b =>
                 {
                     b.Property<int>("Id")
@@ -317,25 +294,6 @@ namespace Online_Book_Shop.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Online_Book_Shop.Models.PurchaseBook", b =>
-                {
-                    b.HasOne("Online_Book_Shop.Models.Book", "book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Online_Book_Shop.Models.Purchase", "purchase")
-                        .WithMany()
-                        .HasForeignKey("PurchaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("book");
-
-                    b.Navigation("purchase");
                 });
 
             modelBuilder.Entity("Online_Book_Shop.Models.Review", b =>

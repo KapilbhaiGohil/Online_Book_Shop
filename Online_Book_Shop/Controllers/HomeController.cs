@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Online_Book_Shop.Database;
 using Online_Book_Shop.DTO;
 using Online_Book_Shop.Models;
@@ -125,10 +126,21 @@ namespace Online_Book_Shop.Controllers
             return Json("Successfull");
         }
         [HttpPost]
+        public IActionResult changeQuentity([FromBody]AddToCart obj)
+        {
+            User u = _db.Users.Find(Convert.ToInt32(obj.userid));
+            Cart remove = _db.Cart.Where(c => c.BookId == obj.Book.BookId && c.UserId == obj.userid).FirstOrDefault();
+            remove.Quentity = obj.quentity;
+            _db.Cart.Update(remove);
+            _db.SaveChanges();
+            return Json(obj);
+        }
+        [HttpPost]
         public IActionResult GetCartData([FromBody]singleValue obj)
         {
             User u = _db.Users.Find(Convert.ToInt32(obj.ival));
             List<Cart> cartData = _db.Cart.Where(c => c.UserId == u.UserId).ToList();
+            List<AddToCart> objs = new List<AddToCart>();
             List<Book> books = new List<Book>();
             foreach(Cart c in cartData)
             {
@@ -140,10 +152,56 @@ namespace Online_Book_Shop.Controllers
                     authors.Add(_db.Users.Find(bk.UserId));
                 }
                 temp.Authors = authors;
+                objs.Add(new AddToCart(temp,c.Quentity));
                 books.Add(temp);
-                
             }
-            return Json(books);
+            return Json(objs);
+        }
+        [HttpPost]
+        public IActionResult cartPurchase([FromBody]singleValue s)
+        {
+            List<Cart> cartItems = _db.Cart.Where(c => c.UserId == s.ival).ToList();
+            IDbContextTransaction tran = _db.Database.BeginTransaction();
+            try
+            {
+                int totalPrice = calculateTotalPrice(cartItems);
+                Purchase p = new Purchase(totalPrice,_db.Users.Find(s.ival));
+                _db.Purchase.Add(p);
+                _db.SaveChanges();
+                int pid = p.PurchaseId;
+                foreach (Cart item in cartItems)
+                {
+                    Book b = _db.Books.Find(item.BookId);
+                    PurchaseBook pb = new PurchaseBook(b.BookId, pid, item.Quentity);
+                    _db.PurchaseBook.Add(pb);
+                }
+                _db.SaveChanges();
+                //clear cart
+                _db.Cart.Where(c => c.UserId == s.ival).ExecuteDelete();
+                _db.SaveChanges();
+                tran.Commit();
+                return Json(pid);
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                tran.Dispose();
+            }
+            return Json(cartItems);
+        }
+        public int  calculateTotalPrice(List<Cart>items)
+        {
+            int res = 0;
+            foreach(Cart c in items)
+            {
+                Book b = _db.Books.Find(c.BookId);
+                res += Convert.ToInt32(b.Price * c.Quentity);
+            }
+            return res;
         }
         public IActionResult Privacy()
         {

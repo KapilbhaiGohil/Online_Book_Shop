@@ -38,6 +38,7 @@ namespace Online_Book_Shop.Models
         public List<User> Authors { get; set; }
         [Required]
         public string ISBN { get; set; }
+       
         public Book(string name,string width,string height, string description, int pages, string type, string country, decimal price, string language, string imageFileName, string isbn)
         {
             Name = name;
