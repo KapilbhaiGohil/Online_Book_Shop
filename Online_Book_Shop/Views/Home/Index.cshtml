@@ -4,6 +4,14 @@
 }
 @section style{
     <link rel="stylesheet" asp-append-version="true" href="~/css/Home/Index.css" />
+    <style>
+        #filteredBooks .book{
+            color: black;
+            background-image: linear-gradient( 135deg, #3B2667 10%, #BC78EC 100%);
+            background-image: linear-gradient( 135deg, #3B2667 10%, #BC78EC 100%);
+            background-image: linear-gradient( 135deg, #F05F57 10%, #360940 100%);
+        }
+</style>
 }
 <div class="home-filter">
     <div class="filter">
@@ -22,13 +30,22 @@
                     <img id="ld" src="images/icons8-dropdown-96.png" />
                 </div>
             </li>
-            <li id="year-li">
+            <!--<li id="year-li">
                 <div>
                     <img src="Images/icons8-date-96.png" />
                     <p>Publish Year</p>
                     <img id="yd" src="images/icons8-dropdown-96.png" />
                 </div>
+
             </li>
+             <li id="price-li">
+                <div>
+                    <img src="Images/icons8-price-90.png" />
+                    <p>Price</p>
+                    <img id="pd" src="images/icons8-dropdown-96.png" />
+                </div>
+            </li>
+            -->
             <li id="country-li">
                 <div>
                     <img src="Images/icons8-earth-52.png" />
@@ -36,26 +53,27 @@
                     <img id="cd" src="images/icons8-dropdown-96.png" />
                 </div>
             </li>
-            <li id="price-li">
-                <div>
-                    <img src="Images/icons8-price-90.png" />
-                    <p>Price</p>
-                    <img id="pd" src="images/icons8-dropdown-96.png" />
-                </div>
-            </li>
         </ul>
     </div>
     <div class="search">
         <div class="search-input">
-            <input type="text" placeholder="Search.." />
+            <input id="filterInput" type="text" placeholder="Search.." />
         </div>
-        <div class="search-btn">
+        <div id="filterBtn" class="search-btn">
             <img src="images/icons8-search-100.png" />
         </div>
     </div>
+    <div class="filter">
+        <ul>
+            <li id="genre-li">
+                <a id="clearfilters">Clear All Filters</a>
+            </li>
+        </ul>
+    </div>
 </div>
-<div id="cartFull" style="display:none"></div>
+<div id="cartFull" class="cartFull" style="display:none"></div>
 <div id="detailInfo" style="display:none"></div>
+<div id="filteredBooks" style="background: radial-gradient(black, transparent);" class="home-books"></div>
 <div id="home-books" class="home-books"></div>
 
 @section script{

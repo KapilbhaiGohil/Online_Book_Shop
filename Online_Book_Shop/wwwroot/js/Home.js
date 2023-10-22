@@ -1,9 +1,10 @@
 ﻿let bookRows = [];
 let uniqueId = 0;
 
-GiveBookRow(uniqueId, "Popular Books of the week", bookList)
+GiveBookRow(uniqueId, "Books For Sale", bookList)
+//defined at the last
 
-function GiveBookRow(id, heading, BookList) {
+function GiveBookRow(id, heading, BookList,isFiltered) {
     let Slides = GenerateSlides(BookList);
     let RowContent = `
          <div id="book-row${id}" class="book-row">
@@ -15,9 +16,14 @@ function GiveBookRow(id, heading, BookList) {
                 
              </div>
          </div>
-    
     `;
-    document.getElementById("home-books").innerHTML += RowContent;
+
+    if (isFiltered) {
+        document.getElementById("filteredBooks").innerHTML = RowContent;
+    } else {
+        document.getElementById("home-books").innerHTML += RowContent;
+    }
+    if (Slides.length == 1) document.getElementById(`for-arr${id}`).style.display = "none"
     bookRows.push({ uniqueId: id, currentShowId: 0, BookSlides: Slides });
     uniqueId = (uniqueId + 1) % 1000;
     console.log(bookRows);
@@ -356,7 +362,11 @@ function getCart() {
         `+ getAllCartItems(cart) +`
     </div>
     ${cart.length > 0 ? `<div class="cart-total">
-        <h3> Subtotal(${ cart.length } item) : ${ cart.totalPrice }</h3 >
+        <h3> Subtotal(${ cart.length} item) : ${cart.totalPrice.toLocaleString("en-IN", {
+            style: "currency",
+            currency: "INR"
+        })}
+        </h3 >
         </div >
         <div class="buy-btn">
             <button onclick="cartPurchase()">Procceed To Buy</button>
@@ -404,7 +414,7 @@ function getCartItem(book,quentity) {
                             <div>
                                 <p>Qty.</p>
                                 <select onchange="changeQuentity(${book.bookId})" selected=${quentity} id="quentity${book.bookId}" required>
-                                    <option ${quentity==1?"selected":""} value="1">1</option>
+                                    <option ${quentity == 1 ? "selected" : ""} value="1">1</option>
                                     <option ${quentity == 2 ? "selected" : ""} value="2">2</option>
                                     <option ${quentity == 3 ? "selected" : ""} value="3">3</option>
                                     <option ${quentity == 4 ? "selected" : ""} value="4">4</option>
@@ -438,3 +448,169 @@ async function cartPurchase(){
     }
     console.log(res);
 }
+
+
+
+//filtering functionality
+let genreEle = document.getElementById("genre-li");
+let lanEle = document.getElementById("language-li");
+let conEle = document.getElementById("country-li");
+let GenreOptions = ["RemoveFilter"]
+let languageOptions = ["RemoveFilter"];
+let countryOptions = ["RemoveFilter"];
+
+async function fetchData() {
+    const res = await fetch("/Admin/GetData", {
+        method: "POST",
+        headers: {
+            "Content-Type": "Application/json",
+        },
+    })
+    if (res.ok) {
+        const data = await res.json();
+        GenreOptions = [...GenreOptions, ...data.type];
+        languageOptions = [...languageOptions, ...data.languages];
+        countryOptions = [...countryOptions, ...data.countries];
+        //console.log(countryOptions)
+    } else {
+        showMsg("Failed To Fetch Data From Server", 1);
+    }
+};
+fetchAndAdd();
+async function fetchAndAdd() {
+    await fetchData();
+    let genreUlChild = getOptionsChild(GenreOptions, 'filterGenre',"genreUlChild");
+    let languageUlChild = getOptionsChild(languageOptions, 'filterLanguage',"lanUlChild");
+    let countryUlChild = getOptionsChild(countryOptions, 'filterCountry',"conUlChild");
+    genreEle.appendChild(genreUlChild);
+    lanEle.appendChild(languageUlChild);
+    conEle.appendChild(countryUlChild);
+}
+genreEle.addEventListener('click', () => {
+    let general = document.getElementById("genreUlChild");
+    if (general.style.display == "none") {
+        general.style.display = "block"
+        document.getElementById("conUlChild").style.display = "none";
+        document.getElementById("lanUlChild").style.display = "none";
+    } else {
+        general.style.display = "none";
+    }
+})
+lanEle.addEventListener('click', () => {
+    let general = document.getElementById("lanUlChild");
+    if (general.style.display == "none") {
+        general.style.display = "block"
+        document.getElementById("genreUlChild").style.display = "none";
+        document.getElementById("conUlChild").style.display = "none";
+    } else {
+        general.style.display = "none";
+    }
+})
+conEle.addEventListener('click', () => {
+    let general = document.getElementById("conUlChild");
+    if (general.style.display == "none") {
+        general.style.display = "block"
+        document.getElementById("genreUlChild").style.display = "none";
+        document.getElementById("lanUlChild").style.display = "none";
+
+    } else {
+        general.style.display = "none";
+    }
+})
+let language, country, genre;
+function filterCountry(selected) {
+    if (selected == "RemoveFilter") {
+        country = undefined;
+        selected = " jskl"
+    } else {
+        country = selected;
+    }
+        document.getElementById("filterBtn").click();
+    findElementByContent(document.getElementById('conUlChild'), selected)
+}
+function filterLanguage(selected) {
+    if (selected == "RemoveFilter") {
+        language = undefined;
+        selected = " jskl"
+    } else {
+        language = selected;
+    }
+    document.getElementById("filterBtn").click();
+    findElementByContent(document.getElementById('lanUlChild'), selected)
+}
+function filterGenre(selected) {
+    if (selected == "RemoveFilter") {
+        genre = undefined;
+        selected=" jskl"
+    } else {
+        genre = selected;
+    }
+        document.getElementById("filterBtn").click();
+    findElementByContent(document.getElementById('genreUlChild'), selected)
+}
+function findElementByContent(parentElement, textContent) {
+    const childElements = parentElement.children;
+    for (let i = 0; i < childElements.length; i++) {
+        if (childElements[i].textContent.includes(textContent)) {
+            childElements[i].style.backgroundImage = "linear-gradient( 135deg, #81FFEF 10%, #F067B4 100%)";
+            childElements[i].style.color = "black";
+        } else {
+            childElements[i].style.background = "#202123";
+            childElements[i].style.color = "#E0E0E0";
+        }
+    }
+}
+function getOptionsChild(options,methodname,id) {
+    let ul = document.createElement("ul");
+    ul.id = id;
+    for (let i = 0; i < options.length; i++) {
+        ul.innerHTML += `
+        <li onclick="${methodname}('${options[i]}')">${options[i]} </li>
+        `;
+    }
+    ul.style.flexWrap = "nowrap";
+    ul.style.zIndex = 1;
+    ul.style.display = "none";
+    return ul;
+}
+
+document.getElementById("filterBtn").addEventListener('click', () => {
+    let searchName = document.getElementById("filterInput").value.toLowerCase();
+    console.log(language, country, genre, searchName);
+    let fileterMsg = ``;
+    let filteredBookList = bookList;
+    if (language) {
+        filteredBookList = filteredBookList.filter(b => b.language == language);
+        fileterMsg += `language : ${language}, `
+    }
+    if (country) {
+        filteredBookList = filteredBookList.filter(b => b.country == country);
+        fileterMsg += `country : ${country}, `
+    }
+    if (genre) {
+        filteredBookList = filteredBookList.filter(b => b.type == genre);
+        fileterMsg += `genre : ${genre}, `
+    }
+    if (searchName) {
+        filteredBookList = filteredBookList.filter(b => b.name.toLowerCase().includes(searchName));
+        fileterMsg += `Name : ${searchName}, `
+    }
+    if (filteredBookList.length > 0) {
+        document.getElementById("filteredBooks").style.display = "block";
+        GiveBookRow(uniqueId, "", filteredBookList, true)
+    } else {
+        ShowMsg(`No Book Found With the ${fileterMsg}`, 1)
+        document.getElementById("filteredBooks").style.display = "none";
+    }
+})
+document.getElementById("filterInput").addEventListener("input", () => {
+    console.log("helo")
+    document.getElementById("filterBtn").click();
+})
+document.getElementById("clearfilters").addEventListener("click", () => {
+    language = undefined;
+    country = undefined;
+    genre = undefined;
+    document.getElementById("filterInput").value = '';
+    document.getElementById("filteredBooks").style.display = "none";
+})

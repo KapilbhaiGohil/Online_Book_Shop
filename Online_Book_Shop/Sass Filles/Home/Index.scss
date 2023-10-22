@@ -48,21 +48,24 @@
                 align-items: center;
 
                 ul {
-                    display: none;
-                    flex-direction: column;
+                    //display: none;
+                    display: block;
                     position: absolute;
                     justify-content: center;
                     align-items: center;
                     top: 3.8rem;
+                    top: 6.5vh;
                     width: inherit;
                     opacity: 1;
                     flex-wrap: wrap;
 
                     li {
                         background: $navBackGround;
+                        width: 100%;
+
 
                         &:hover {
-                            opacity: 0.8;
+                            background: $bodyBack1;
                         }
                     }
                 }
@@ -99,6 +102,7 @@
             padding: 0.6rem;
             box-shadow: 0 0 7px 0px;
             cursor: pointer;
+            border-radius: 0.4rem;
 
             img {
                 width: 1rem;

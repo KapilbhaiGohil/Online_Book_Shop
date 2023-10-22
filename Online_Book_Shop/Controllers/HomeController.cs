@@ -22,7 +22,7 @@ namespace Online_Book_Shop.Controllers
         }
         public IActionResult Index()
         {
-            if (HttpContext.Session.GetString("userid") == null) { return RedirectToAction("Register"); }
+            if (HttpContext.Session.GetString("userid") == null){return RedirectToAction("Register");}
             List<Book> books = _db.Books.ToList();
             foreach (Book b in books)
             {
@@ -106,6 +106,11 @@ namespace Online_Book_Shop.Controllers
                 TempData["status"] = 1;
             }
             return View();
+        }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login");
         }
         [HttpPost]
         public IActionResult AddItemToCart([FromBody] AddToCart obj)

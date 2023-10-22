@@ -69,7 +69,26 @@ namespace Online_Book_Shop.Controllers
         public IActionResult Book()
         {
             List<Book> books = _db.Books.ToList();
-            ViewData["Books"] = books;
+            if (!isAuthor())
+            {
+                ViewData["Books"] = books;
+            }
+            else
+            {
+                User u = _db.Users.Find(Convert.ToInt32(HttpContext.Session.GetString("userid")));
+                if (u == null) return RedirectToAction("Login", "Home");
+                List<Book> filteredBooks = new List<Book>();
+                foreach (Book book in books)
+                {
+                    List<BookUser>authors = _db.BookUsers.Where(bu=>bu.BookId==book.BookId && bu.UserId==u.UserId).ToList();
+                    if (authors != null && authors.Count>0)
+                    {
+                        filteredBooks.Add(book);
+                    }
+                }
+                
+                ViewData["Books"] = filteredBooks;
+            }
             return View("Book");
         }
         [HttpPost]
@@ -101,7 +120,7 @@ namespace Online_Book_Shop.Controllers
                               Name, Width, Height, Description, pages,
                               Type.ToString(), country.ToString(), Price, ln.ToString(),
                               uniqueFileName, ISBN
-                          );
+                        );
                         TempData["msg"] = "New Book Successfully Added";
                         TempData["status"] = "0";
                         _db.Books.Add(b);
@@ -163,6 +182,10 @@ namespace Online_Book_Shop.Controllers
         public class searchData
         {
             public string search { get; set; }
+        }
+        public bool isAuthor()
+        {
+            return HttpContext.Session.GetString("userRole") == "Author";
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -22,16 +22,21 @@
                 </div>
                 <div class="nav-links-outer">
                     <ul class="nav-links">
-                        <li id="database"><a asp-action="index" asp-controller="Admin">Database</a></li>
                         <li id="home"><a asp-action="Index" asp-controller="Home" >Home</a></li>
                         <li id="manage"><a>Manage Purchase</a></li>
-                        <li id="about"><a>About</a></li>
-                        <li id="feedback"><a>Feedback</a></li>
-                        <li id="login"><a>Login</a></li>
+                        @if (Context.Session.GetString("userRole") == "Admin")
+                        {
+                            <li id="database"><a asp-action="index" asp-controller="Admin">Database</a></li>
+                        }
+                        @if (Context.Session.GetString("userRole") == "Author")
+                        {
+                            <li id="database"><a asp-action="book" asp-controller="Admin">My Books</a></li>
+                        }
                         <li id="cart">
                             <img src="~/Images/icons8-purchase-96.png"/>
                             <a>Cart</a>
                         </li>
+                        <li id="logout"><a asp-action="Logout" asp-controller="Home">Logout</a></li>
                     </ul>
                 </div>
             </div>
