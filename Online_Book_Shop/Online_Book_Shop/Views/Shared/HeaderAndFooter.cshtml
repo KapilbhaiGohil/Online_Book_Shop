@@ -1,0 +1,68 @@
+﻿﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Online_Book_Shop</title>
+    <link rel="stylesheet" href="~/css/Shared/HeaderAndFooter.css" asp-append-version="true"/>
+    @RenderSection("Style",required:false)
+</head>
+<body>
+    <div id="msg-container" style="display:none">
+        <div id="msg-outer">
+            <img id="img" src="~/Images/icons8-error-64.png"  style="margin-right:0.6rem;width:1.4rem"/>
+            <p id="msg"></p>
+        </div>
+    </div>
+    <header>
+        <nav>
+            <div class="nav-outer">
+                <div class="nav-header">
+                    <span>The Book Vault</span>
+                </div>
+                <div class="nav-links-outer">
+                    <ul class="nav-links">
+                        <li id="home"><a asp-action="Index" asp-controller="Home" >Home</a></li>
+                        @* <li id="manage"><a>Manage Purchase</a></li> *@
+                        @if (Context.Session.GetString("userRole") == "Admin")
+                        {
+                            <li id="database"><a asp-action="index" asp-controller="Admin">Database</a></li>
+                        }
+                        @if (Context.Session.GetString("userRole") == "Author")
+                        {
+                            <li id="database"><a asp-action="book" asp-controller="Admin">My Books</a></li>
+                        }
+                        <li id="cart">
+                            <img src="~/Images/icons8-purchase-96.png"/>
+                            <a>Cart</a>
+                        </li>
+                        <li id="logout"><a asp-action="Logout" asp-controller="Home">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="outer">
+        <main id="main" role="main">
+            @RenderBody()
+        </main>
+    </div>
+    <footer>
+
+    </footer>
+    <script type="text/javascript">
+        let UserId = @Context.Session.GetString("userid");
+        console.log("This is user id"+UserId);
+    </script>
+    <script src="~/js/HeaderAndFooter.js"></script>
+    <script type="text/javascript">
+        let m = '@TempData["msg"]';
+        let s = '@TempData["status"]';
+        if(m!=""){
+            ShowMsg(m,s);
+        }
+        console.log(m.length)
+    </script>
+    @RenderSection("Script",required:false)
+</body>
+</html>

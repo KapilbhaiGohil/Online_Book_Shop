@@ -1,0 +1,35 @@
+﻿<link href="~/css/admin/AdminLayout.css" rel="stylesheet" asp-append-version="true" />
+<div class="admin-header">
+    <ul>
+        @if (Context.Session.GetString("userRole") == "Admin")
+        {
+            <li>
+                <div>
+                    <img src="/images/icons8-users-90.png" />
+                    <a asp-action="Index" asp-controller="Admin" id="users">Users</a>
+                </div>
+            </li>
+        }
+        <li>
+            <div>
+                <img src="/images/icons8-book-90.png" />
+                <a asp-action="Book" asp-controller="Admin" id="books">Books</a>
+            </div>
+        </li>
+        @if (Context.Session.GetString("userRole") == "Admin")
+        {
+       @*  <li>
+            <div>
+                <img src="/images/icons8-review-96.png" />
+                <p id="reviews">Reviews</p>
+            </div>
+        </li>
+            <li>
+                <div>
+                <img src="/images/icons8-purchase-96.png" />
+                <p id="purchses">Purchses</p>
+            </div>
+        </li> *@
+        }
+    </ul>
+</div>
